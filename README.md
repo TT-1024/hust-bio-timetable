@@ -6,24 +6,40 @@
 
 ## 数据
 
-`dist/schedule.json` 由原始 `01课表.xlsx` 提取，保留176条排课记录、来源单元格、完整教师名单和9项考试。源文件不上传至网站。原文件保持不变。
+`web/schedule.json` 由原始 `01课表.xlsx` 提取，保留176条排课记录、来源单元格、完整教师名单和9项考试。源文件不上传至网站。原文件保持不变。
 
 - “合”→大课，所有班显示；编号→小课，只在对应班显示。多个编号对应的班级都显示。F/C不影响筛选。
 - 教师为课程级完整名单，原文件未将教师分配到某一次授课；详情明确说明。
 - 第1周从2026-08-31开始，与全部9项考试日期及截图相符。按原表周次展示，不自动推断调休。
 - 作息时间采用用户截图。室外体育课保留“中心操场”。考试缺少教室和精确时段，不虚构。
 - 连续同课程同地点节次合并为一块，不跨午休或晚饭时段。单节生态学正确结束于第11节。
+- 序号按班级、课程、大课/小课分别从学期开始累计；用户确认一次合并后的课程块计1节。显示为“（第n节小课）”“（第n节大课）”。
+
+## 共享记录
+
+点课程进入独立记录页，可编辑“上课内容”和“重要信息”。记录保存于 Sites 的 D1 数据库，访客无需登录即可读写。大课由四班共用记录；小课按班级与具体排课分别记录。其他班同序号课程提供直接跳转，实际授课进度可能不同。
+
+保存带版本号检查，过时的保存返回409并要求合并，避免静默覆盖。历史版本保留在数据库中，界面展示最近10版。本机草稿只用于恢复未保存输入，不代替云端记录。每框最多8000字，公开接口有基础频率限制。原始IP不保存；用于限流的摘要按日期变化。
 
 ## 本地运行
 
-在 `dist` 目录运行 `python3 -m http.server 4173`，访问 `http://localhost:4173`。
+使用 Node.js 24，执行 `npm ci`、`npm run build`。首次预览先应用本地数据库迁移：
 
-运行校验：`node --test tests/schedule.test.mjs`。
+```sh
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_absent_thunderbolts.sql
+npm start -- --port 4187
+```
+
+只在全新本地数据库执行该迁移，不要对已迁移数据库重复执行。生产迁移由 Sites 发布流程应用。本地测试内容不会上传到生产数据库。
+
+运行校验：`node --test tests/*.test.mjs`。数据库测试使用独立内存SQLite。
 
 更新数据：`python3 scripts/extract_schedule.py /绝对路径/01课表.xlsx`（需要 openpyxl，仅只读源表）。
 
 ## 部署
 
-`dist` 是无需构建、无第三方前端依赖的完整静态站，可直接部署至 GitHub Pages。项目内有可手动触发的 GitHub Pages workflow；仓库的 Pages Source 需设为 GitHub Actions。实际 Sites 配置见 `.openai/hosting.json`。
+`web` 保存前端源文件，构建前复制静态资源至 `public`；Sites 的 Vinext Worker 提供首页和 `/api/notes`，D1绑定及部署身份见 `.openai/hosting.json`。`dist` 为生成的部署产物，勿直接修改。
+
+GitHub Pages 部署 `web` 目录。Pages 无法运行数据库，前端通过 HTTPS 调用同一个 Sites 笔记接口，所以两个网址共享记录。项目内有可手动触发的 Pages workflow；仓库的 Pages Source 设为 GitHub Actions。
 
 网站不要求同学登录；字号偏好只保存在各自浏览器。首页为 `/`；指定课表分享链接参数为 `?class=1&week=9`，可直接查看明确指定的班级和周次。

@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {dateAt,currentWeek,weekEntries,weekBlocks,label,clampWeek,shanghaiToday} from '../dist/core.mjs';
-const data=JSON.parse(fs.readFileSync(new URL('../dist/schedule.json',import.meta.url)));
+import {dateAt,currentWeek,weekEntries,weekBlocks,semesterSessions,label,clampWeek,shanghaiToday} from '../web/core.mjs';
+const data=JSON.parse(fs.readFileSync(new URL('../web/schedule.json',import.meta.url)));
 test('semester dates match both reference screenshots and all nine source exams',()=>{
   assert.equal(dateAt(data,9),'2026-10-26');assert.equal(dateAt(data,10),'2026-11-02');
   assert.equal(currentWeek(data,'2026-10-26'),9);assert.equal(currentWeek(data,'2027-01-03'),18);
@@ -40,4 +40,19 @@ test('rooms with letters and outdoor locations are preserved; source totals and 
 test('week limits and empty end-of-semester grids',()=>{
   assert.equal(clampWeek(data,-3),1);assert.equal(clampWeek(data,99),19);assert.equal(clampWeek(data,'bad'),1);
   assert.equal(weekEntries(data,19,1).length,0);assert.equal(data.exams.filter(e=>e.week===19).length,3);
+});
+test('semester ordinals count merged blocks chronologically and reset for every course, kind and class',()=>{
+  for(let cls=1;cls<=4;cls++){
+    const counters=new Map();let time=-1;
+    for(const b of semesterSessions(data,cls)){
+      const moment=b.week*1000+b.day*20+b.start;assert.ok(moment>time);time=moment;
+      const key=`${b.courseId}/${b.kind}`;const n=(counters.get(key)||0)+1;counters.set(key,n);
+      assert.equal(b.ordinal,n);assert.equal(label(b),`${b.name}（第${n}节${b.kind}）`);
+    }
+  }
+  const lessons=semesterSessions(data,1);
+  const lab=lessons.find(b=>b.week===1&&b.name==='解剖与生理学实验');assert.equal(lab.end-lab.start+1,4);assert.equal(lab.ordinal,1);
+  const anatomy=weekBlocks(data,9,1).find(b=>b.day===0&&b.name==='解剖与生理学');assert.equal(anatomy.ordinal,17);
+  for(let c=2;c<=4;c++){const other=weekBlocks(data,9,c).find(b=>b.day===0&&b.name==='解剖与生理学');assert.equal(other.noteId,anatomy.noteId)}
+  assert.notEqual(semesterSessions(data,1).find(b=>b.kind==='小课').noteId,semesterSessions(data,2).find(b=>b.kind==='小课').noteId);
 });

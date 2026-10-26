@@ -13,7 +13,7 @@ export function clampWeek(data,week) { return Math.max(1,Math.min(data.weekCount
 export function weekEntries(data,week,cls) {
   return data.entries.filter(e=>e.weeks.includes(week)&&e.classes.includes(cls)).sort((a,b)=>a.day-b.day||a.start-b.start);
 }
-export function weekBlocks(data,week,cls) {
+function rawWeekBlocks(data,week,cls) {
   const result=[];
   for (const entry of weekEntries(data,week,cls)) {
     const prev=result.at(-1);
@@ -24,4 +24,17 @@ export function weekBlocks(data,week,cls) {
   }
   return result;
 }
-export function label(entry) { return `${entry.name}（${entry.kind}）`; }
+const sessionCache=new WeakMap();
+export function semesterSessions(data,cls){
+  if(!sessionCache.has(data))sessionCache.set(data,new Map());
+  const cache=sessionCache.get(data);if(cache.has(cls))return cache.get(cls);
+  const sessions=[],counts=new Map();
+  for(let week=1;week<=data.weekCount;week++)for(const b of rawWeekBlocks(data,week,cls)){
+    const counter=`${b.courseId}/${b.kind}`,ordinal=(counts.get(counter)||0)+1;counts.set(counter,ordinal);
+    sessions.push({...b,week,cls,ordinal,noteId:`2026a-${b.kind==='大课'?'all':`c${cls}`}-s${b.courseId}-w${week}-d${b.day}-p${b.start}`});
+  }
+  cache.set(cls,sessions);return sessions;
+}
+export function weekBlocks(data,week,cls){return semesterSessions(data,cls).filter(b=>b.week===week)}
+export function kindLabel(entry){return entry.ordinal?`第${entry.ordinal}节${entry.kind}`:entry.kind}
+export function label(entry) { return `${entry.name}（${kindLabel(entry)}）`; }

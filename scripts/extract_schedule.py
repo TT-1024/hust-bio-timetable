@@ -7,7 +7,7 @@ from datetime import date, timedelta
 import openpyxl
 
 root = Path(__file__).resolve().parents[1]
-source = Path(sys.argv[1]) if len(sys.argv) > 1 else Path('/Users/yeziting/Desktop/01大三上/01课表.xlsx')
+source = Path(sys.argv[1]) if len(sys.argv) > 1 else Path('01课表.xlsx')
 sheet = openpyxl.load_workbook(source, data_only=True).worksheets[0]
 catalog = []
 for row in range(3, 17):
@@ -64,7 +64,7 @@ data=dict(title=sheet['A1'].value,semesterStart='2026-08-31',weekCount=19,classe
                    ['14:00','14:45'],['14:50','15:35'],['15:55','16:40'],['16:45','17:30'],
                    ['18:30','19:15'],['19:20','20:05'],['20:15','21:00'],['21:05','21:50']],
           courses=catalog,entries=entries,exams=exams)
-(root/'dist'/'schedule.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+(root/'web'/'schedule.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
 conflicts=[]
 for week in range(1,20):
     for cls in range(1,5):

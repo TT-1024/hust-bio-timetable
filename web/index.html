@@ -9,8 +9,8 @@
   <title>生科课表 · 2024级</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./style.css?v=2">
-  <script type="module" src="./app.mjs?v=2"></script>
+  <link rel="stylesheet" href="./style.css?v=3">
+  <script type="module" src="./app.mjs?v=3"></script>
 </head>
 <body>
 <main id="home" class="home" aria-labelledby="home-title">
@@ -55,6 +55,22 @@
     <button class="nav-item" id="nav-mine"><svg viewBox="0 0 28 28"><circle cx="14" cy="9" r="5"/><path d="M5 24v-3a9 9 0 0 1 18 0v3z"/></svg><span>我的</span></button>
   </nav>
 </div>
+<section id="lesson-page" class="lesson-page" aria-labelledby="lesson-title" hidden>
+  <header class="lesson-header"><button id="lesson-back" aria-label="返回课表">‹ 返回课表</button><span>共享课堂记录</span></header>
+  <main class="lesson-main">
+    <span id="lesson-group" class="detail-chip"></span><h1 id="lesson-title" tabindex="-1"></h1>
+    <p id="lesson-meta" class="lesson-meta"></p>
+    <details class="lesson-details"><summary>教师与上课地点</summary><div id="lesson-details-body"></div></details>
+    <div id="other-classes" class="other-classes"></div>
+    <p class="notes-intro">大家一起补充，其他班也能查看，为下一次课堂做准备。</p>
+    <label class="note-box"><span>上课内容</span><small>知识点、课堂进度、实验步骤…</small><textarea id="note-content" rows="7" maxlength="8000" placeholder="这节课讲了什么？一起记下来。" disabled></textarea></label>
+    <label class="note-box important-box"><span>重要信息</span><small>作业、截止时间、考试提醒、注意事项…</small><textarea id="note-important" rows="6" maxlength="8000" placeholder="有哪些需要同学提前知道的信息？" disabled></textarea></label>
+    <div id="note-conflict" class="note-conflict" hidden></div>
+    <p id="note-status" class="note-status" role="status"></p>
+    <div class="note-utilities"><button id="note-reload">重新读取</button><button id="note-history">历史版本</button></div>
+  </main>
+  <footer class="lesson-footer"><span>记录将公开给所有同学</span><button id="note-save" class="primary" disabled>保存记录</button></footer>
+</section>
 <dialog id="sheet" aria-labelledby="sheet-title"><div class="sheet-handle"></div><div class="sheet-header"><h2 id="sheet-title"></h2><button id="close-sheet" class="close-button" aria-label="关闭">×</button></div><div id="sheet-body"></div></dialog>
 <div id="toast" role="status" class="toast" hidden></div>
 <div id="announcement" class="sr-only" aria-live="polite"></div>

@@ -1,20 +1,24 @@
-import {dateAt,shanghaiToday,currentWeek,clampWeek,weekEntries,weekBlocks,label} from './core.mjs';
+import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,kindLabel,label} from './core.mjs?v=3';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
 let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer;
+let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
 const el=(tag,className,text)=>{const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n};
 const button=(text,fn,className='')=>{const b=el('button',className,text);b.addEventListener('click',fn);return b};
 function notify(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600)}
-function syncURL(){const u=new URL(location.href);u.searchParams.set('class',cls);u.searchParams.set('week',week);history.replaceState({view:'timetable'},'',u)}
+function syncURL(){const u=new URL(location.href);u.searchParams.set('class',cls);u.searchParams.set('week',week);u.searchParams.delete('lesson');history.replaceState({view:'timetable'},'',u)}
+function leaveLesson(){noteLoading++;activeLesson=null;$('#lesson-page').hidden=true;noteLoaded=false;noteDirty=false}
 function showHome(updateURL=true){
+  leaveLesson();
   $('#sheet').close();$('#home').hidden=false;$('#timetable').hidden=true;
-  if(updateURL){const u=new URL(location.href);u.searchParams.delete('class');u.searchParams.delete('week');history.pushState({view:'home'},'',u)}
+  if(updateURL){const u=new URL(location.href);u.searchParams.delete('class');u.searchParams.delete('week');u.searchParams.delete('lesson');history.pushState({view:'home'},'',u)}
   document.title='选择班级 · 生科课表';$('#announcement').textContent='请选择要查看的班级';
   $('#home-title').focus({preventScroll:true});
 }
 function enterClass(value,push=true){
+  leaveLesson();
   cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);
   if(push)history.pushState({view:'timetable'},'',location.href);
   refresh();$('#main').focus({preventScroll:true});
@@ -41,7 +45,7 @@ function refresh(){
     const n=button('',()=>{if(Date.now()>suppressClickUntil)showCourse(b)},'course');
     n.style.gridColumn=b.day+2;n.style.gridRow=`${b.start} / ${b.end+1}`;n.style.setProperty('--color',palette[b.courseId]);
     n.setAttribute('aria-label',`星期${weekdays[b.day]} 第${b.start}至${b.end}节 ${label(b)} ${b.teachers.join('、')} ${b.building}${b.room}`);
-    const name=el('div','course-name',b.name);name.append(el('span','kind',`（${b.kind}）`));
+    const name=el('div','course-name',b.name);name.append(el('span','kind',`（${kindLabel(b)}）`));
     const bottom=el('div','course-bottom'),teacher=el('span','teacher',b.teachers.join('、'));
     teacher.title=b.teachers.join('、');
     const loc=el('span','location',b.building);if(b.room)loc.append(el('span','room',b.room));bottom.append(teacher,loc);n.append(name,bottom);$('#grid').append(n);
@@ -67,13 +71,70 @@ function renderAgenda(){
 function changeWeek(value){week=clampWeek(data,value);refresh();$('#main').scrollTop=0}
 function openSheet(title){$('#sheet-title').textContent=title;$('#sheet-body').replaceChildren();if(!$('#sheet').open)$('#sheet').showModal();return $('#sheet-body')}
 function showCourse(b){
-  const body=openSheet(label(b));body.append(el('div','detail-chip',b.kind==='大课'?'1–4 班合班授课':b.classes.map(c=>`${c}班`).join('、')+'小课'));
+  openLesson(b);
+}
+function lessonDetails(b){
   const dl=el('dl','detail-list');
-  for(const [name,value] of [['日期',`${dateAt(data,week,b.day)} 星期${weekdays[b.day]}`],['节次',`第 ${b.start}–${b.end} 节 · ${data.periods[b.start-1][0]}–${data.periods[b.end-1][1]}`],['教师',b.teachers.join('、')],['教学楼',b.building],['教室',b.room||'室外场地'],['上课周次',b.weeks.join('、')+'周']]){
+  for(const [name,value] of [['日期',`${dateAt(data,b.week,b.day)} 星期${weekdays[b.day]}`],['节次',`第 ${b.start}–${b.end} 节 · ${data.periods[b.start-1][0]}–${data.periods[b.end-1][1]}`],['教师',b.teachers.join('、')],['教学楼',b.building],['教室',b.room||'室外场地']]){
     const row=el('div');row.append(el('dt','',name),el('dd','',value));dl.append(row);
   }
-  body.append(dl,el('p','detail-footnote',data.teacherNote));
+  return dl;
 }
+const notesOrigin=location.hostname.endsWith('.github.io')?'https://hust-bio-2024-timetable.dragon-air.chatgpt.site':location.origin;
+function noteURL(id,history=false){const u=new URL('/api/notes',notesOrigin);u.searchParams.set('id',id);if(history)u.searchParams.set('history','1');return u}
+function noteValues(){return {content:$('#note-content').value,important:$('#note-important').value}}
+function keepDraft(){if(activeLesson&&noteLoaded)stored.set(`note-draft:${activeLesson.noteId}`,JSON.stringify({...noteValues(),revision:noteRevision}))}
+function clearDraft(id){try{localStorage.removeItem(`note-draft:${id}`)}catch{}}
+function noteStatus(text){$('#note-status').textContent=text}
+function noteControls(){for(const id of ['#note-content','#note-important'])$(id).disabled=!noteLoaded||noteSaving;$('#note-save').disabled=!noteLoaded||!noteDirty||noteSaving;$('#note-reload').disabled=noteSaving;$('#note-history').disabled=!noteLoaded||noteSaving;$('#note-save').textContent=noteSaving?'正在保存…':'保存记录'}
+function applyNote(note){noteRevision=note.revision;$('#note-content').value=note.content;$('#note-important').value=note.important;noteLoaded=true;noteDirty=false;$('#note-conflict').hidden=true;noteStatus(note.updatedAt?`最近更新 ${new Date(note.updatedAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})} · 第${note.revision}版`:'本节课还没有记录，欢迎写下第一条。');noteControls()}
+function conflict(note){
+  noteLoaded=true;noteDirty=true;$('#note-conflict').hidden=false;const panel=$('#note-conflict');panel.replaceChildren(el('strong','','有同学更新了记录，你的输入已保留。'),el('p','','请对照下面的最新内容，在上方合并后再保存。'));
+  const latest=el('details');latest.append(el('summary','','查看云端最新内容'),el('h4','','上课内容'),el('pre','',note.content||'暂无记录'),el('h4','','重要信息'),el('pre','',note.important||'暂无记录'));panel.append(latest);
+  panel.append(button('保留输入，继续合并',()=>{noteRevision=note.revision;panel.hidden=true;keepDraft();noteStatus('请在上方合并双方的信息，完成后点击保存。');noteControls()},'primary'),button('改用云端最新记录',()=>{clearDraft(activeLesson.noteId);applyNote(note)},'tool-action'));
+  noteControls();$('#note-save').disabled=true;noteStatus('请先处理更新冲突，再保存。');
+}
+async function loadNote(){
+  const b=activeLesson,requestId=++noteLoading;noteLoaded=false;noteDirty=false;$('#note-content').value='';$('#note-important').value='';$('#note-conflict').hidden=true;noteControls();noteStatus('正在读取共享记录…');
+  try{const res=await fetch(noteURL(b.noteId),{cache:'no-store'});const result=await res.json();if(!res.ok)throw Error(result.error||'读取失败');if(requestId!==noteLoading)return;applyNote(result.note);
+    let draft;try{draft=JSON.parse(stored.get(`note-draft:${b.noteId}`,'null'))}catch{}
+    if(draft&&typeof draft.content==='string'&&typeof draft.important==='string'&&(draft.content!==result.note.content||draft.important!==result.note.important)){
+      $('#note-content').value=draft.content;$('#note-important').value=draft.important;noteDirty=true;
+      if(draft.revision!==result.note.revision)conflict(result.note);else{noteStatus('已恢复这台设备上未保存的草稿。');noteControls()}
+    }
+  }catch(error){if(requestId!==noteLoading)return;noteStatus(`暂时无法读取记录。${error.message||'请检查网络。'} 点击“重新读取”重试。`);noteControls()}
+}
+function openLesson(b,push=true){
+  if(noteSaving){notify('正在保存，请稍等');return}
+  activeLesson=b;$('#sheet').close();$('#home').hidden=true;$('#timetable').hidden=true;$('#lesson-page').hidden=false;
+  $('#lesson-title').textContent=label(b);$('#lesson-group').textContent=b.kind==='大课'?'1–4班共同记录':`${b.cls}班课堂记录`;
+  $('#lesson-meta').textContent=`第${b.week}周 · ${dateAt(data,b.week,b.day)} 星期${weekdays[b.day]} · 第${b.start}–${b.end}节`;
+  $('#lesson-details-body').replaceChildren(lessonDetails(b),el('p','detail-footnote',data.teacherNote));
+  const others=$('#other-classes');others.replaceChildren();
+  if(b.kind==='小课'){
+    others.append(el('span','','其他班的同序号小课'));
+    const links=el('div');for(let c=1;c<=4;c++){const other=semesterSessions(data,c).find(s=>s.courseId===b.courseId&&s.kind===b.kind&&s.ordinal===b.ordinal);if(other){const btn=button(`${c}班`,()=>{cls=c;week=other.week;openLesson(other)},c===b.cls?'selected':'');btn.disabled=c===b.cls;links.append(btn)}}others.append(links,el('small','','同序号课程的实际授课进度可能不同。'));
+  }
+  const u=new URL(location.href);u.searchParams.set('class',b.cls);u.searchParams.set('week',b.week);u.searchParams.set('lesson',b.noteId);history[push?'pushState':'replaceState']({view:'lesson'},'',u);
+  document.title=`${b.cls}班 · ${label(b)} · 课堂记录`;$('#lesson-title').focus({preventScroll:true});$('.lesson-main').scrollTop=0;loadNote();
+}
+async function saveNote(){
+  if(!activeLesson||!noteLoaded||!noteDirty||noteSaving)return;
+  const id=activeLesson.noteId;keepDraft();noteSaving=true;noteControls();noteStatus('正在保存到云端…');
+  try{const res=await fetch(noteURL(id),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...noteValues(),revision:noteRevision})});const result=await res.json();noteSaving=false;
+    if(!activeLesson||activeLesson.noteId!==id)return;
+    if(res.status===409){conflict(result.note);return}if(!res.ok)throw Error(result.error||'保存失败');clearDraft(id);applyNote(result.note);noteStatus('已保存到云端，其他同学现在可以查看。');notify('记录已保存');
+  }catch(error){noteSaving=false;noteStatus(`未能保存：${error.message}。输入已保留，请重试。`);noteControls()}
+}
+async function showNoteHistory(){
+  const b=activeLesson,body=openSheet('历史版本');body.append(el('p','muted','正在读取…'));
+  try{const res=await fetch(noteURL(b.noteId,true),{cache:'no-store'});const result=await res.json();if(!res.ok)throw Error(result.error);if(activeLesson?.noteId!==b.noteId||!$('#sheet').open)return;body.replaceChildren();
+    if(!result.history.length)body.append(el('p','muted','还没有已保存的记录。'));
+    for(const item of result.history){const details=el('details','history-item');details.append(el('summary','',`第${item.revision}版 · ${new Date(item.updatedAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})}`),el('h4','','上课内容'),el('pre','',item.content||'暂无记录'),el('h4','','重要信息'),el('pre','',item.important||'暂无记录'));body.append(details)}
+    body.append(el('p','muted','显示最近10个版本，可复制历史内容后重新编辑。'));
+  }catch(error){body.replaceChildren(el('p','muted',`历史记录读取失败：${error.message}`))}
+}
+function routeFromURL(){const p=new URL(location.href).searchParams,c=Number(p.get('class'));week=clampWeek(data,p.get('week')||currentWeek(data));$('#sheet').close();if(![1,2,3,4].includes(c)){showHome(false);return}cls=c;const b=semesterSessions(data,c).find(b=>b.noteId===p.get('lesson'));if(b)openLesson(b,false);else enterClass(c,false)}
 function showClasses(){
   const body=openSheet('切换班级');body.append(el('p','muted','生物科学（中外合作办学）· 2024级'));
   const grid=el('div','class-options');
@@ -111,8 +172,12 @@ async function init(){
   $('#schedule-view').addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
   $('#schedule-view').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4){suppressClickUntil=Date.now()+500;changeWeek(week+(dx<0?1:-1))}},{passive:true});
   $('#schedule-view').addEventListener('touchcancel',()=>{touchStart=null},{passive:true});
-  document.addEventListener('keydown',e=>{if(!$('#home').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
-  window.addEventListener('popstate',()=>{const p=new URL(location.href).searchParams;const c=Number(p.get('class'));week=clampWeek(data,p.get('week')||currentWeek(data));$('#sheet').close();if([1,2,3,4].includes(c))enterClass(c,false);else showHome(false)});
-  if(cls)enterClass(cls,false);else showHome(false);
+  $('#lesson-back').onclick=()=>{if(noteSaving){notify('正在保存，请稍等');return}const b=activeLesson;const u=new URL(location.href);u.searchParams.delete('lesson');history.pushState({view:'timetable'},'',u);week=b.week;enterClass(b.cls,false)};
+  $('#note-save').onclick=saveNote;$('#note-reload').onclick=loadNote;$('#note-history').onclick=showNoteHistory;
+  for(const field of ['#note-content','#note-important'])$(field).addEventListener('input',()=>{noteDirty=true;keepDraft();noteStatus('有未保存的修改，请点击“保存记录”同步给同学。');noteControls();if(!$('#note-conflict').hidden)$('#note-save').disabled=true});
+  window.addEventListener('beforeunload',e=>{if(noteDirty||noteSaving){e.preventDefault();e.returnValue=''}});
+  document.addEventListener('keydown',e=>{if(!$('#home').hidden||!$('#lesson-page').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
+  window.addEventListener('popstate',routeFromURL);
+  routeFromURL();
 }
 init();
