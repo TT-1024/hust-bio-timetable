@@ -9,11 +9,27 @@
   <title>生科课表 · 2024级</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.mjs"></script>
+  <link rel="stylesheet" href="./style.css?v=2">
+  <script type="module" src="./app.mjs?v=2"></script>
 </head>
 <body>
-<div class="app">
+<main id="home" class="home" aria-labelledby="home-title">
+  <div class="home-brand"><img src="./icon.svg" alt="" width="38" height="38"><span>生科课表<small>2024 级 · 四班共享</small></span></div>
+  <section class="home-content">
+    <p class="home-eyebrow">2026—2027 学年 · 第一学期</p>
+    <h1 id="home-title" tabindex="-1">想看哪个班的课表？</h1>
+    <p class="home-intro">选择一个班级，查看每周课程安排。</p>
+    <div class="home-classes" aria-label="选择要查看的班级">
+      <button class="home-class" data-class="1" aria-label="查看1班课表" disabled><span class="home-class-number">1<span>班</span></span><small>202401</small><span class="home-class-link">查看课表 <span aria-hidden="true">↗</span></span></button>
+      <button class="home-class" data-class="2" aria-label="查看2班课表" disabled><span class="home-class-number">2<span>班</span></span><small>202402</small><span class="home-class-link">查看课表 <span aria-hidden="true">↗</span></span></button>
+      <button class="home-class" data-class="3" aria-label="查看3班课表" disabled><span class="home-class-number">3<span>班</span></span><small>202403</small><span class="home-class-link">查看课表 <span aria-hidden="true">↗</span></span></button>
+      <button class="home-class" data-class="4" aria-label="查看4班课表" disabled><span class="home-class-number">4<span>班</span></span><small>202404</small><span class="home-class-link">查看课表 <span aria-hidden="true">↗</span></span></button>
+    </div>
+    <p id="home-status" class="home-hint" role="status">正在读取课表…</p>
+  </section>
+  <footer class="home-footer">华中科技大学<br><span>生物科学（中外合作办学）</span></footer>
+</main>
+<div class="app" id="timetable" hidden>
   <header class="header">
     <div class="toolbar">
       <div class="date-week"><div id="today"></div><div class="week-line"><button id="week-button" aria-label="选择周次">第 9 周 <span class="tiny-chevron">⌄</span></button><button id="back-current" hidden>回到本周</button></div></div>
@@ -34,7 +50,7 @@
   </main>
   <nav class="bottom-nav" aria-label="主导航">
     <button class="nav-item active" id="nav-schedule"><svg viewBox="0 0 28 28"><rect x="5" y="6" width="18" height="18" rx="5"/><path d="M10 4v5m8-5v5M9 13h10M9 17h6"/></svg><span>课表</span></button>
-    <button class="nav-item" id="nav-class"><svg viewBox="0 0 28 28"><rect x="4" y="9" width="16" height="14" rx="5"/><path d="M9 5h10a5 5 0 0 1 5 5v8M8 15h1m3 0h1m3 0h1"/></svg><span>班级</span></button>
+    <button class="nav-item" id="nav-class" aria-label="返回首页选择班级"><svg viewBox="0 0 28 28"><rect x="4" y="9" width="16" height="14" rx="5"/><path d="M9 5h10a5 5 0 0 1 5 5v8M8 15h1m3 0h1m3 0h1"/></svg><span>班级</span></button>
     <button class="nav-item" id="nav-tools"><svg viewBox="0 0 28 28"><rect x="4" y="9" width="20" height="14" rx="4"/><path d="M10 9V6h8v3M4 15h20m-12-2h4v5h-4z"/></svg><span>工具箱</span></button>
     <button class="nav-item" id="nav-mine"><svg viewBox="0 0 28 28"><circle cx="14" cy="9" r="5"/><path d="M5 24v-3a9 9 0 0 1 18 0v3z"/></svg><span>我的</span></button>
   </nav>

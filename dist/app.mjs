@@ -7,7 +7,18 @@ const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}c
 const el=(tag,className,text)=>{const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n};
 const button=(text,fn,className='')=>{const b=el('button',className,text);b.addEventListener('click',fn);return b};
 function notify(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600)}
-function syncURL(){const u=new URL(location.href);u.searchParams.set('class',cls);u.searchParams.set('week',week);history.replaceState(null,'',u);stored.set('bio-class',cls)}
+function syncURL(){const u=new URL(location.href);u.searchParams.set('class',cls);u.searchParams.set('week',week);history.replaceState({view:'timetable'},'',u)}
+function showHome(updateURL=true){
+  $('#sheet').close();$('#home').hidden=false;$('#timetable').hidden=true;
+  if(updateURL){const u=new URL(location.href);u.searchParams.delete('class');u.searchParams.delete('week');history.pushState({view:'home'},'',u)}
+  document.title='选择班级 · 生科课表';$('#announcement').textContent='请选择要查看的班级';
+  $('#home-title').focus({preventScroll:true});
+}
+function enterClass(value,push=true){
+  cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);
+  if(push)history.pushState({view:'timetable'},'',location.href);
+  refresh();$('#main').focus({preventScroll:true});
+}
 function refresh(){
   blocks=weekBlocks(data,week,cls);syncURL();
   $('#today').textContent=shanghaiToday().replaceAll('-','/');
@@ -67,7 +78,7 @@ function showClasses(){
   const body=openSheet('切换班级');body.append(el('p','muted','生物科学（中外合作办学）· 2024级'));
   const grid=el('div','class-options');
   for(let c=1;c<=4;c++){const b=button(`${c} 班${cls===c?' ✓':''}`,()=>{cls=c;refresh();$('#sheet').close()},`class-option${cls===c?' selected':''}`);b.setAttribute('aria-pressed',String(cls===c));b.append(el('small','',`20240${c} · 大课 + 本班小课`));grid.append(b)}
-  body.append(grid,el('p','muted','下次打开会记住你选择的班级。'));
+  body.append(grid,el('p','muted','也可以点击底部「班级」返回首页重新选择。'));
 }
 function showWeeks(){
   const body=openSheet('选择周次'),grid=el('div','week-options');
@@ -86,20 +97,22 @@ async function share(){
 }
 function setAgenda(value){agenda=value;$('#schedule-view').hidden=agenda;$('#agenda-view').hidden=!agenda;$('#agenda-button').textContent=agenda?'周表':'日程';$('#main').scrollTop=0}
 async function init(){
-  try{const res=await fetch('./schedule.json');if(!res.ok)throw Error();data=await res.json()}catch{$('#grid').replaceChildren(el('p','loading','课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
+  try{const res=await fetch('./schedule.json');if(!res.ok)throw Error();data=await res.json()}catch{$('#home-status').replaceChildren(document.createTextNode('课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
   const params=new URL(location.href).searchParams;
-  cls=Number(params.get('class')||stored.get('bio-class','1'));if(![1,2,3,4].includes(cls))cls=1;
+  cls=Number(params.get('class'));if(![1,2,3,4].includes(cls))cls=null;
   week=clampWeek(data,params.get('week')||currentWeek(data));
+  document.querySelectorAll('.home-class').forEach(b=>{b.disabled=false;b.onclick=()=>enterClass(Number(b.dataset.class))});
+  $('#home-status').textContent='四个班均可查看 · 进入课表后可左右翻周';
   if(stored.get('bio-large','0')==='1')document.documentElement.classList.add('large-text');
   $('#previous').onclick=()=>changeWeek(week-1);$('#next').onclick=()=>changeWeek(week+1);$('#back-current').onclick=()=>changeWeek(currentWeek(data));
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
-  $('#nav-schedule').onclick=()=>{setAgenda(false);$('#sheet').close()};$('#nav-class').onclick=showClasses;$('#nav-tools').onclick=showTools;$('#nav-mine').onclick=showMine;
+  $('#nav-schedule').onclick=()=>{setAgenda(false);$('#sheet').close()};$('#nav-class').onclick=()=>showHome();$('#nav-tools').onclick=showTools;$('#nav-mine').onclick=showMine;
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   $('#schedule-view').addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
   $('#schedule-view').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4){suppressClickUntil=Date.now()+500;changeWeek(week+(dx<0?1:-1))}},{passive:true});
   $('#schedule-view').addEventListener('touchcancel',()=>{touchStart=null},{passive:true});
-  document.addEventListener('keydown',e=>{if($('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
-  window.addEventListener('popstate',()=>{const p=new URL(location.href).searchParams;const c=Number(p.get('class'));cls=[1,2,3,4].includes(c)?c:1;week=clampWeek(data,p.get('week')||currentWeek(data));refresh()});
-  refresh();
+  document.addEventListener('keydown',e=>{if(!$('#home').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
+  window.addEventListener('popstate',()=>{const p=new URL(location.href).searchParams;const c=Number(p.get('class'));week=clampWeek(data,p.get('week')||currentWeek(data));$('#sheet').close();if([1,2,3,4].includes(c))enterClass(c,false);else showHome(false)});
+  if(cls)enterClass(cls,false);else showHome(false);
 }
 init();
