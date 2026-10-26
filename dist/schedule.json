@@ -1,0 +1,4792 @@
+{
+  "title": "华中科技大学生物科学（中外合作办学）202401-202404班2026-2027年度第一学期课表",
+  "semesterStart": "2026-08-31",
+  "weekCount": 19,
+  "classes": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "source": "01课表.xlsx",
+  "teacherNote": "教师为原课表列出的课程教师名单，原表未指定每次授课教师。",
+  "timeSource": "节次时间参照用户提供的课表截图。",
+  "periods": [
+    [
+      "08:00",
+      "08:45"
+    ],
+    [
+      "08:55",
+      "09:40"
+    ],
+    [
+      "10:10",
+      "10:55"
+    ],
+    [
+      "11:05",
+      "11:50"
+    ],
+    [
+      "14:00",
+      "14:45"
+    ],
+    [
+      "14:50",
+      "15:35"
+    ],
+    [
+      "15:55",
+      "16:40"
+    ],
+    [
+      "16:45",
+      "17:30"
+    ],
+    [
+      "18:30",
+      "19:15"
+    ],
+    [
+      "19:20",
+      "20:05"
+    ],
+    [
+      "20:15",
+      "21:00"
+    ],
+    [
+      "21:05",
+      "21:50"
+    ]
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "形势与政策",
+      "teachers": [
+        "马克思主义学院"
+      ],
+      "assessment": "考查"
+    },
+    {
+      "id": "2",
+      "name": "大学体育（三）",
+      "teachers": [
+        "体育学院"
+      ],
+      "assessment": "考查"
+    },
+    {
+      "id": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "assessment": "考查"
+    },
+    {
+      "id": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "assessment": "考查"
+    },
+    {
+      "id": "5",
+      "name": "解剖与生理学",
+      "teachers": [
+        "胡文君"
+      ],
+      "assessment": "19周周六（2027年1月9日）下午"
+    },
+    {
+      "id": "6",
+      "name": "生物材料学",
+      "teachers": [
+        "杜莹莹",
+        "王江林",
+        "张胜民"
+      ],
+      "assessment": "16周周四（2026年12月17日）晚上"
+    },
+    {
+      "id": "7",
+      "name": "生物统计学",
+      "teachers": [
+        "常俊丽"
+      ],
+      "assessment": "19周周一（2027年1月4日）下午"
+    },
+    {
+      "id": "8",
+      "name": "表观遗传学",
+      "teachers": [
+        "柯铁"
+      ],
+      "assessment": "19周周四（2027年1月7日）下午"
+    },
+    {
+      "id": "9",
+      "name": "生态学",
+      "teachers": [
+        "朱斌"
+      ],
+      "assessment": "考查"
+    },
+    {
+      "id": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "assessment": "12周周四（2026年11月19日）晚上"
+    },
+    {
+      "id": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "assessment": "13周周四（2026年11月26日）晚上"
+    },
+    {
+      "id": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "assessment": "14周周五（2026年12月4日）晚上"
+    },
+    {
+      "id": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "assessment": "11周周一（2026年11月9日）晚上"
+    },
+    {
+      "id": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "assessment": "15周周四（2026年12月10日）晚上"
+    }
+  ],
+  "entries": [
+    {
+      "id": "C17",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C17",
+      "raw": "植物生理学I 10周 1F 东十二楼101"
+    },
+    {
+      "id": "D17",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "212",
+      "sourceCell": "D17",
+      "raw": "免疫学 7周 合F 东十二楼212"
+    },
+    {
+      "id": "E17",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        12
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "109",
+      "sourceCell": "E17",
+      "raw": "植物生理学I 12周 3F 东十二楼109"
+    },
+    {
+      "id": "F17",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "109",
+      "sourceCell": "F17",
+      "raw": "植物生理学I 11周 4F 东十二楼109"
+    },
+    {
+      "id": "C18",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "212",
+      "sourceCell": "C18",
+      "raw": "免疫学 8周 1F 东十二楼212"
+    },
+    {
+      "id": "E18",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 0,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "E18",
+      "raw": "科学史 9周 合F 东十二楼204"
+    },
+    {
+      "id": "C19",
+      "courseId": "5",
+      "name": "解剖与生理学",
+      "teachers": [
+        "胡文君"
+      ],
+      "day": 0,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "201",
+      "sourceCell": "C19",
+      "raw": "解剖与生理学 1-16周 合C 东十二楼201"
+    },
+    {
+      "id": "C20",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "C20",
+      "raw": "解剖与生理学实验 1、3、5、8、10、12、14、16周 1C 东十二楼519"
+    },
+    {
+      "id": "D20",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "D20",
+      "raw": "科学史 9周 2F 东十二楼204"
+    },
+    {
+      "id": "E20",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        2,
+        4,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "E20",
+      "raw": "解剖与生理学实验 2、4、7、9、11、13、15、17周 3C 东十二楼519"
+    },
+    {
+      "id": "F20",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "F20",
+      "raw": "病毒学 8周 3F、4F 东十二楼209"
+    },
+    {
+      "id": "C21",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "C21",
+      "raw": "病毒学 7周 1F、2F 东十二楼209"
+    },
+    {
+      "id": "D21",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "D21",
+      "raw": "植物生理学I 10周 2F 东十二楼206"
+    },
+    {
+      "id": "F21",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        12
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "F21",
+      "raw": "植物生理学I 12周 4F 东十二楼206"
+    },
+    {
+      "id": "C22",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "C22",
+      "raw": "植物生理学I 11周 1F 东十二楼206"
+    },
+    {
+      "id": "D22",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "D22",
+      "raw": "免疫学 11周 2C 东十二楼412"
+    },
+    {
+      "id": "E22",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        3,
+        10,
+        12
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "E22",
+      "raw": "免疫学 3、10、12周 3C 东十二楼412"
+    },
+    {
+      "id": "C23",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        4
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "C23",
+      "raw": "免疫学 4周 1C 东十二楼412"
+    },
+    {
+      "id": "D23",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "D23",
+      "raw": "免疫学 8周 2F 东十二楼412"
+    },
+    {
+      "id": "C24",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "C24",
+      "raw": "免疫学 9周 1F 东十二楼412"
+    },
+    {
+      "id": "C25",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "C25",
+      "raw": "解剖与生理学实验 1、3、5、8、10、12、14、16周 1C 东十二楼519"
+    },
+    {
+      "id": "D25",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        11,
+        12
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "D25",
+      "raw": "植物生理学I 11-12周 2F 东十二楼204"
+    },
+    {
+      "id": "E25",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        2,
+        4,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "E25",
+      "raw": "解剖与生理学实验 2、4、7、9、11、13、15、17周 3C 东十二楼519"
+    },
+    {
+      "id": "F25",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "F25",
+      "raw": "科学史 9周 4F 东十二楼204"
+    },
+    {
+      "id": "C26",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "212",
+      "sourceCell": "C26",
+      "raw": "免疫学 11周 1C 东十二楼212"
+    },
+    {
+      "id": "D26",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "212",
+      "sourceCell": "D26",
+      "raw": "免疫学 9周 2F 东十二楼212"
+    },
+    {
+      "id": "E26",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "E26",
+      "raw": "植物生理学I 10周 3F 东十二楼204"
+    },
+    {
+      "id": "F26",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        5
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "F26",
+      "raw": "病毒学 5周 3F、4F 东十二楼209"
+    },
+    {
+      "id": "C27",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "306",
+      "sourceCell": "C27",
+      "raw": "生物学中的数学 2 9周 1F 东十二楼306"
+    },
+    {
+      "id": "D27",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        4
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "D27",
+      "raw": "免疫学 4周 2C 东十二楼412"
+    },
+    {
+      "id": "F27",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        3
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "412",
+      "sourceCell": "F27",
+      "raw": "免疫学 3周 4C 东十二楼412"
+    },
+    {
+      "id": "F28",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10,
+        12
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "212",
+      "sourceCell": "F28",
+      "raw": "免疫学 10、12周 4C 东十二楼212"
+    },
+    {
+      "id": "C29",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "C29",
+      "raw": "科学史 9周 1F 东十二楼204"
+    },
+    {
+      "id": "D29",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "D29",
+      "raw": "科学史 7周 合F 东十二楼204"
+    },
+    {
+      "id": "E29",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "204",
+      "sourceCell": "E29",
+      "raw": "生物学中的数学 2 8周 合F 东十二楼204"
+    },
+    {
+      "id": "F29",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "F29",
+      "raw": "植物生理学I 10周 4F 东十二楼104"
+    },
+    {
+      "id": "C30",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        5
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "C30",
+      "raw": "病毒学 5周 1F、2F 东十二楼209"
+    },
+    {
+      "id": "D30",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "305",
+      "sourceCell": "D30",
+      "raw": "生物学中的数学 2 9周 2F 东十二楼305"
+    },
+    {
+      "id": "F30",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 0,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "201",
+      "sourceCell": "F30",
+      "raw": "免疫学 9周 4F 东十二楼201"
+    },
+    {
+      "id": "C32",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "109",
+      "sourceCell": "C32",
+      "raw": "生物学中的数学 2 9周 合F 东十二楼109"
+    },
+    {
+      "id": "D32",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "109",
+      "sourceCell": "D32",
+      "raw": "生物学中的数学 2 8周 2F 东十二楼109"
+    },
+    {
+      "id": "E32",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "E32",
+      "raw": "植物生理学I 11周 3F 东十二楼404"
+    },
+    {
+      "id": "F32",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "F32",
+      "raw": "植物生理学I 10周 4F 东十二楼404"
+    },
+    {
+      "id": "C33",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        12
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "C33",
+      "raw": "植物生理学I 12周 1F 东十二楼404"
+    },
+    {
+      "id": "D33",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        1
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "D33",
+      "raw": "免疫学 1周 合F 东十二楼202"
+    },
+    {
+      "id": "E33",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "E33",
+      "raw": "免疫学 8周 3F 东十二楼202"
+    },
+    {
+      "id": "F33",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        4,
+        11
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "F33",
+      "raw": "免疫学 4、11周 4C 东十二楼202"
+    },
+    {
+      "id": "C34",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        3
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "C34",
+      "raw": "免疫学 3周 1C 东十二楼202"
+    },
+    {
+      "id": "D34",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10,
+        12
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "D34",
+      "raw": "免疫学 10、12周 2C 东十二楼202"
+    },
+    {
+      "id": "C35",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "202",
+      "sourceCell": "C35",
+      "raw": "免疫学 7周 1F 东十二楼202"
+    },
+    {
+      "id": "C36",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "403",
+      "sourceCell": "C36",
+      "raw": "生物学中的数学 2 8周 1F 东十二楼403"
+    },
+    {
+      "id": "D36",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        3
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "D36",
+      "raw": "免疫学 3周 2C 东十二楼415"
+    },
+    {
+      "id": "E36",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "E36",
+      "raw": "科学史 9周 3F 东十二楼415"
+    },
+    {
+      "id": "C37",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10,
+        12
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "C37",
+      "raw": "免疫学 10、12周 1C 东十二楼415"
+    },
+    {
+      "id": "D37",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "D37",
+      "raw": "免疫学 7周 2F 东十二楼415"
+    },
+    {
+      "id": "E37",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        7
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "210",
+      "sourceCell": "E37",
+      "raw": "病毒学 7周 3F、4F 东十二楼210"
+    },
+    {
+      "id": "F37",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "F37",
+      "raw": "植物生理学I 11周 4F 东十二楼404"
+    },
+    {
+      "id": "E38",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10,
+        12
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "E38",
+      "raw": "植物生理学I 10、12周 3F 东十二楼404"
+    },
+    {
+      "id": "F38",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "F38",
+      "raw": "免疫学 8周 4F 东十二楼415"
+    },
+    {
+      "id": "E39",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 1,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        4,
+        11
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "E39",
+      "raw": "免疫学 4、11周 3C 东十二楼415"
+    },
+    {
+      "id": "C40",
+      "courseId": "6",
+      "name": "生物材料学",
+      "teachers": [
+        "杜莹莹",
+        "王江林",
+        "张胜民"
+      ],
+      "day": 1,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "C40",
+      "raw": "生物材料学 1-12周  合C 东十二楼409"
+    },
+    {
+      "id": "C41",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 1,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "402",
+      "sourceCell": "C41",
+      "raw": "病毒学 8周 1F、2F 东十二楼402"
+    },
+    {
+      "id": "D41",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 1,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        2,
+        3,
+        5,
+        7
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "402",
+      "sourceCell": "D41",
+      "raw": "病毒学 2-3、5、7周 合F 东十二楼402"
+    },
+    {
+      "id": "E41",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 1,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "E41",
+      "raw": "生物学中的数学 2 8周 3F 东十二楼206"
+    },
+    {
+      "id": "F41",
+      "courseId": "7",
+      "name": "生物统计学",
+      "teachers": [
+        "常俊丽"
+      ],
+      "day": 1,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "301",
+      "sourceCell": "F41",
+      "raw": "生物统计学 9-16周 合C 东十二楼301"
+    },
+    {
+      "id": "C42",
+      "courseId": "5",
+      "name": "解剖与生理学",
+      "teachers": [
+        "胡文君"
+      ],
+      "day": 1,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "201",
+      "sourceCell": "C42",
+      "raw": "解剖与生理学 1-16周 合C 东十二楼201"
+    },
+    {
+      "id": "C44",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "C44",
+      "raw": "植物生理学I 11周 1F 东十二楼104"
+    },
+    {
+      "id": "D44",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "304",
+      "sourceCell": "D44",
+      "raw": "生物学中的数学 2 9周 2F 东十二楼304"
+    },
+    {
+      "id": "E44",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        7,
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "E44",
+      "raw": "免疫学 7、9周 3F 东十二楼102"
+    },
+    {
+      "id": "F44",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "F44",
+      "raw": "科学史 9周 4F 东十二楼415"
+    },
+    {
+      "id": "D45",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "D45",
+      "raw": "植物生理学I 10周 2F 东十二楼104"
+    },
+    {
+      "id": "F45",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "304",
+      "sourceCell": "F45",
+      "raw": "生物学中的数学 2 8周 4F 东十二楼304"
+    },
+    {
+      "id": "C46",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        7,
+        8
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "616",
+      "sourceCell": "C46",
+      "raw": "病毒学 7-8周 1F、2F 东十二楼616"
+    },
+    {
+      "id": "E46",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "E46",
+      "raw": "科学史 9周 3F 东十二楼415"
+    },
+    {
+      "id": "F46",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        4
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "F102",
+      "sourceCell": "F46",
+      "raw": "病毒学 4周 合F 东十二楼F102"
+    },
+    {
+      "id": "C47",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "304",
+      "sourceCell": "C47",
+      "raw": "生物学中的数学 2 9周 1F 东十二楼304"
+    },
+    {
+      "id": "D47",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "D47",
+      "raw": "植物生理学I 11周 2F 东十二楼104"
+    },
+    {
+      "id": "E47",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        5
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "207",
+      "sourceCell": "E47",
+      "raw": "病毒学 5周 3F、4F 东十二楼207"
+    },
+    {
+      "id": "F47",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        7,
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "404",
+      "sourceCell": "F47",
+      "raw": "免疫学 7、9周 4F 东十二楼404"
+    },
+    {
+      "id": "C48",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "C48",
+      "raw": "植物生理学I 10周 1F 东十二楼104"
+    },
+    {
+      "id": "D48",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        1,
+        2
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "114",
+      "sourceCell": "D48",
+      "raw": "免疫学 1-2周 合C 东十二楼114"
+    },
+    {
+      "id": "E48",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "304",
+      "sourceCell": "E48",
+      "raw": "生物学中的数学 2 8周 3F 东十二楼304"
+    },
+    {
+      "id": "C49",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "306",
+      "sourceCell": "C49",
+      "raw": "生物学中的数学 2 8周 1F 东十二楼306"
+    },
+    {
+      "id": "D49",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "D49",
+      "raw": "免疫学 9周 2F 东十二楼206"
+    },
+    {
+      "id": "E49",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        4,
+        7,
+        8
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "312",
+      "sourceCell": "E49",
+      "raw": "病毒学 4、7-8周 3F、4F 东十二楼312"
+    },
+    {
+      "id": "F49",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "306",
+      "sourceCell": "F49",
+      "raw": "生物学中的数学 2 9周 4F 东十二楼306"
+    },
+    {
+      "id": "C50",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "C50",
+      "raw": "科学史 9周 1F 东十二楼415"
+    },
+    {
+      "id": "D50",
+      "courseId": "8",
+      "name": "表观遗传学",
+      "teachers": [
+        "柯铁"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "D50",
+      "raw": "表观遗传学 10-17周 合C 东十二楼209"
+    },
+    {
+      "id": "C51",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        5
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "312",
+      "sourceCell": "C51",
+      "raw": "病毒学 5周 1F、2F 东十二楼312"
+    },
+    {
+      "id": "C52",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        1
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "C52",
+      "raw": "病毒学 1周 合F 东十二楼104"
+    },
+    {
+      "id": "D52",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "415",
+      "sourceCell": "D52",
+      "raw": "科学史 9周 2F 东十二楼415"
+    },
+    {
+      "id": "E52",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "305",
+      "sourceCell": "E52",
+      "raw": "生物学中的数学 2 9周 3F 东十二楼305"
+    },
+    {
+      "id": "F52",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "F52",
+      "raw": "植物生理学I 10周 4F 东十二楼104"
+    },
+    {
+      "id": "C53",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "210",
+      "sourceCell": "C53",
+      "raw": "免疫学 9周 1F 东十二楼210"
+    },
+    {
+      "id": "E53",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 2,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "E53",
+      "raw": "植物生理学I 11周 3F 东十二楼104"
+    },
+    {
+      "id": "D54",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 2,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "D54",
+      "raw": "解剖与生理学实验 1、3、5、8、10、12、14、16周 2C 东十二楼519"
+    },
+    {
+      "id": "F54",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 2,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        2,
+        4,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "F54",
+      "raw": "解剖与生理学实验 2、4、7、9、11、13、15、17周 4C 东十二楼519"
+    },
+    {
+      "id": "D55",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 2,
+      "start": 11,
+      "end": 12,
+      "weeks": [
+        1,
+        3,
+        5,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "D55",
+      "raw": "解剖与生理学实验 1、3、5、8、10、12、14、16周 2C 东十二楼519"
+    },
+    {
+      "id": "F55",
+      "courseId": "4",
+      "name": "解剖与生理学实验",
+      "teachers": [
+        "常瑾"
+      ],
+      "day": 2,
+      "start": 11,
+      "end": 12,
+      "weeks": [
+        2,
+        4,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "519",
+      "sourceCell": "F55",
+      "raw": "解剖与生理学实验 2、4、7、9、11、13、15、17周 4C 东十二楼519"
+    },
+    {
+      "id": "C56",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "315",
+      "sourceCell": "C56",
+      "raw": "科学史 9周 1F 东十二楼315"
+    },
+    {
+      "id": "D56",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "304",
+      "sourceCell": "D56",
+      "raw": "病毒学 8周 1F、2F 东十二楼304"
+    },
+    {
+      "id": "E56",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "315",
+      "sourceCell": "E56",
+      "raw": "科学史 8周 3F 东十二楼315"
+    },
+    {
+      "id": "F56",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "F56",
+      "raw": "植物生理学I 11周 4F 东十二楼206"
+    },
+    {
+      "id": "C57",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        6,
+        7
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "403",
+      "sourceCell": "C57",
+      "raw": "免疫学 6-7周 1F 东十二楼403"
+    },
+    {
+      "id": "E57",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "E57",
+      "raw": "生物学中的数学 2 9周 3F 东十二楼102"
+    },
+    {
+      "id": "F57",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "203",
+      "sourceCell": "F57",
+      "raw": "生物学中的数学 2 8周 4F 东十二楼203"
+    },
+    {
+      "id": "E58",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "206",
+      "sourceCell": "E58",
+      "raw": "植物生理学I 10周 3F 东十二楼206"
+    },
+    {
+      "id": "C59",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "403",
+      "sourceCell": "C59",
+      "raw": "科学史 8周 1F 东十二楼403"
+    },
+    {
+      "id": "D59",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8,
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "D59",
+      "raw": "生物学中的数学 2 8-9周 2F 东十二楼104"
+    },
+    {
+      "id": "E59",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        6
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "114",
+      "sourceCell": "E59",
+      "raw": "病毒学 6周 3F、4F 东十二楼114"
+    },
+    {
+      "id": "F59",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "305",
+      "sourceCell": "F59",
+      "raw": "科学史 9周 4F 东十二楼305"
+    },
+    {
+      "id": "D60",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "312",
+      "sourceCell": "D60",
+      "raw": "植物生理学I 10周 2F 东十二楼312"
+    },
+    {
+      "id": "E60",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "315",
+      "sourceCell": "E60",
+      "raw": "免疫学 9周 3F 东十二楼315"
+    },
+    {
+      "id": "F60",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        7,
+        8
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "616",
+      "sourceCell": "F60",
+      "raw": "病毒学 7、8周 3F、4F 东十二楼616"
+    },
+    {
+      "id": "C61",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "312",
+      "sourceCell": "C61",
+      "raw": "植物生理学I 11周 1F 东十二楼312"
+    },
+    {
+      "id": "D61",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        6,
+        7
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "403",
+      "sourceCell": "D61",
+      "raw": "免疫学 6-7周 2F 东十二楼403"
+    },
+    {
+      "id": "E61",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 3,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        4
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "114",
+      "sourceCell": "E61",
+      "raw": "病毒学 4周 合F 东十二楼114"
+    },
+    {
+      "id": "C62",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 3,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        4
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "C62",
+      "raw": "病毒学 4周 1F、2F 东十二楼104"
+    },
+    {
+      "id": "D62",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "D62",
+      "raw": "科学史 9周 2F 东十二楼409"
+    },
+    {
+      "id": "C63",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 3,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "111",
+      "sourceCell": "C63",
+      "raw": "生物学中的数学 2 9周 1F 东十二楼111"
+    },
+    {
+      "id": "D63",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "D63",
+      "raw": "植物生理学I 11周 2F 东十二楼102"
+    },
+    {
+      "id": "C64",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 3,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        10
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "C64",
+      "raw": "植物生理学I 10周 1F 东十二楼102"
+    },
+    {
+      "id": "C65",
+      "courseId": "1",
+      "name": "形势与政策",
+      "teachers": [
+        "马克思主义学院"
+      ],
+      "day": 3,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东九楼",
+      "room": "B102",
+      "sourceCell": "C65",
+      "raw": "形势与政策 10-13周 合C 东九楼B102"
+    },
+    {
+      "id": "E65",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 3,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "E65",
+      "raw": "科学史 9周 3F 东十二楼409"
+    },
+    {
+      "id": "F65",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 3,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "104",
+      "sourceCell": "F65",
+      "raw": "生物学中的数学 2 8周 合F 东十二楼104"
+    },
+    {
+      "id": "C66",
+      "courseId": "9",
+      "name": "生态学",
+      "teachers": [
+        "朱斌"
+      ],
+      "day": 3,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "C66",
+      "raw": "生态学 1-11周 合C 东十二楼102"
+    },
+    {
+      "id": "C67",
+      "courseId": "9",
+      "name": "生态学",
+      "teachers": [
+        "朱斌"
+      ],
+      "day": 3,
+      "start": 11,
+      "end": 11,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "C67",
+      "raw": "生态学 1-10周 合C 东十二楼102"
+    },
+    {
+      "id": "C69",
+      "courseId": "8",
+      "name": "表观遗传学",
+      "teachers": [
+        "柯铁"
+      ],
+      "day": 4,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "C69",
+      "raw": "表观遗传学 10-17周 合C 东十二楼209"
+    },
+    {
+      "id": "D69",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 4,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "D69",
+      "raw": "科学史 8周 2F 东十二楼409"
+    },
+    {
+      "id": "E69",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 4,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        6,
+        7
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "203",
+      "sourceCell": "E69",
+      "raw": "免疫学 6-7周 3F 东十二楼203"
+    },
+    {
+      "id": "F69",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 4,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8,
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "F69",
+      "raw": "生物学中的数学 2 8-9周 4F 东十二楼209"
+    },
+    {
+      "id": "C70",
+      "courseId": "2",
+      "name": "大学体育",
+      "teachers": [
+        "体育学院"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "中心操场",
+      "room": "",
+      "sourceCell": "C70",
+      "raw": "大学体育 9-16周 合C 中心操场"
+    },
+    {
+      "id": "D70",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        6,
+        7,
+        8
+      ],
+      "classes": [
+        1,
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "209",
+      "sourceCell": "D70",
+      "raw": "病毒学 6-8周 1F、2F 东十二楼209"
+    },
+    {
+      "id": "E70",
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "teachers": [
+        "Cécile PANTIN",
+        "王申"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "403",
+      "sourceCell": "E70",
+      "raw": "生物学中的数学 2 8周 3F 东十二楼403"
+    },
+    {
+      "id": "F70",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "F70",
+      "raw": "科学史 8周 4F 东十二楼409"
+    },
+    {
+      "id": "C71",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        1,
+        2
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "102",
+      "sourceCell": "C71",
+      "raw": "免疫学 1-2周 合C 东十二楼102"
+    },
+    {
+      "id": "F71",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 4,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        6,
+        7
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "305",
+      "sourceCell": "F71",
+      "raw": "免疫学 6-7周 4F 东十二楼305"
+    },
+    {
+      "id": "C72",
+      "courseId": "6",
+      "name": "生物材料学",
+      "teachers": [
+        "杜莹莹",
+        "王江林",
+        "张胜民"
+      ],
+      "day": 4,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "409",
+      "sourceCell": "C72",
+      "raw": "生物材料学 1-12周  合C 东十二楼409"
+    },
+    {
+      "id": "C73",
+      "courseId": "7",
+      "name": "生物统计学",
+      "teachers": [
+        "常俊丽"
+      ],
+      "day": 4,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        16
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "301",
+      "sourceCell": "C73",
+      "raw": "生物统计学 9-12、14、16周 合C 东十二楼301"
+    },
+    {
+      "id": "D73",
+      "courseId": "7",
+      "name": "生物统计学",
+      "teachers": [
+        "常俊丽"
+      ],
+      "day": 4,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        13,
+        15
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "工程实践创新中心",
+      "room": "A201",
+      "sourceCell": "D73",
+      "raw": "生物统计学 13、15周 合C 工程实践创新中心A201"
+    },
+    {
+      "id": "E73",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 4,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "210",
+      "sourceCell": "E73",
+      "raw": "植物生理学I 1-3、6-8周 合F 东十二楼210"
+    },
+    {
+      "id": "C74",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 4,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C74",
+      "raw": "科学史 9周 合F 东十二楼101"
+    },
+    {
+      "id": "D74",
+      "courseId": "14",
+      "name": "免疫学",
+      "teachers": [
+        "苏莉",
+        "祁淑红",
+        "Sylvain FISSON",
+        "Hanadi SALIBA"
+      ],
+      "day": 4,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        6
+      ],
+      "classes": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "kind": "大课",
+      "building": "东十二楼",
+      "room": "201",
+      "sourceCell": "D74",
+      "raw": "免疫学 6周 合F 东十二楼201"
+    },
+    {
+      "id": "E74",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 4,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "E74",
+      "raw": "植物生理学I 11周 3F 东十二楼101"
+    },
+    {
+      "id": "F74",
+      "courseId": "13",
+      "name": "病毒学",
+      "teachers": [
+        "Hanadi SALIBA",
+        "Cécile LAGAUDRIÈRE",
+        "蒋涛"
+      ],
+      "day": 4,
+      "start": 9,
+      "end": 10,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3,
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "112",
+      "sourceCell": "F74",
+      "raw": "病毒学 8周 3F、4F 东十二楼112"
+    },
+    {
+      "id": "C76",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 5,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C76",
+      "raw": "科学史 8周 1F 东十二楼101"
+    },
+    {
+      "id": "D76",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "D76",
+      "raw": "植物生理学I 11周 2F 东十二楼101"
+    },
+    {
+      "id": "E76",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "E76",
+      "raw": "免疫学实验 11、13、15周 3C 东十二楼509"
+    },
+    {
+      "id": "C77",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C77",
+      "raw": "植物生理学I 9周 1F 东十二楼101"
+    },
+    {
+      "id": "C78",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "C78",
+      "raw": "免疫学实验 10、12、14周 1C 东十二楼509"
+    },
+    {
+      "id": "C79",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "C79",
+      "raw": "免疫学实验 10、12、14周 1C 东十二楼509"
+    },
+    {
+      "id": "D79",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 5,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "D79",
+      "raw": "科学史 8周 2F 东十二楼101"
+    },
+    {
+      "id": "E79",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "E79",
+      "raw": "免疫学实验 11、13、15周 3C 东十二楼509"
+    },
+    {
+      "id": "F79",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "F79",
+      "raw": "植物生理学I 11周 4F 东十二楼101"
+    },
+    {
+      "id": "D80",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "D80",
+      "raw": "植物生理学I 9周 2F 东十二楼101"
+    },
+    {
+      "id": "C81",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "C81",
+      "raw": "免疫学实验 10、12、14周 1C 东十二楼509"
+    },
+    {
+      "id": "E81",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 5,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "E81",
+      "raw": "科学史 8周 3F 东十二楼101"
+    },
+    {
+      "id": "C82",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C82",
+      "raw": "植物生理学I 11周 1F 东十二楼101"
+    },
+    {
+      "id": "E82",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "E82",
+      "raw": "植物生理学I 9周 3F 东十二楼101"
+    },
+    {
+      "id": "E83",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "E83",
+      "raw": "免疫学实验 11、13、15周 3C 东十二楼509"
+    },
+    {
+      "id": "C84",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "C84",
+      "raw": "免疫学实验 10、12、14周 1C 东十二楼509"
+    },
+    {
+      "id": "E84",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 5,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "E84",
+      "raw": "免疫学实验 11、13、15周 3C 东十二楼509"
+    },
+    {
+      "id": "F84",
+      "courseId": "10",
+      "name": "科学史",
+      "teachers": [
+        "Marjorie SALERNO",
+        "Christian VU TRAN",
+        "春雷"
+      ],
+      "day": 5,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        8
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "F84",
+      "raw": "科学史 8周 4F 东十二楼101"
+    },
+    {
+      "id": "F85",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 5,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "F85",
+      "raw": "植物生理学I 9周 4F 东十二楼101"
+    },
+    {
+      "id": "D88",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 6,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "D88",
+      "raw": "植物生理学I 9周 2F 东十二楼101"
+    },
+    {
+      "id": "F88",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "F88",
+      "raw": "免疫学实验 11、13、15周 4C 东十二楼509"
+    },
+    {
+      "id": "D89",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 1,
+      "end": 2,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "D89",
+      "raw": "免疫学实验 10、12、14周 2C 东十二楼509"
+    },
+    {
+      "id": "D90",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "D90",
+      "raw": "免疫学实验 10、12、14周 2C 东十二楼509"
+    },
+    {
+      "id": "E90",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 6,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        3
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "E90",
+      "raw": "植物生理学I 9周 3F 东十二楼101"
+    },
+    {
+      "id": "F90",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 3,
+      "end": 4,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "F90",
+      "raw": "免疫学实验 11、13、15周 4C 东十二楼509"
+    },
+    {
+      "id": "D91",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "D91",
+      "raw": "免疫学实验 10、12、14周 2C 东十二楼509"
+    },
+    {
+      "id": "F91",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 6,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "F91",
+      "raw": "植物生理学I 9周 4F 东十二楼101"
+    },
+    {
+      "id": "F92",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 5,
+      "end": 6,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "F92",
+      "raw": "免疫学实验 11、13、15周 4C 东十二楼509"
+    },
+    {
+      "id": "C93",
+      "courseId": "12",
+      "name": "植物生理学I",
+      "teachers": [
+        "Bénédicte STURBOIS",
+        "Marjorie SALERNO",
+        "李引"
+      ],
+      "day": 6,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        9
+      ],
+      "classes": [
+        1
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "101",
+      "sourceCell": "C93",
+      "raw": "植物生理学I 9周 1F 东十二楼101"
+    },
+    {
+      "id": "D93",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        10,
+        12,
+        14
+      ],
+      "classes": [
+        2
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "D93",
+      "raw": "免疫学实验 10、12、14周 2C 东十二楼509"
+    },
+    {
+      "id": "F93",
+      "courseId": "3",
+      "name": "免疫学实验",
+      "teachers": [
+        "祁淑红",
+        "杨杰",
+        "王珍"
+      ],
+      "day": 6,
+      "start": 7,
+      "end": 8,
+      "weeks": [
+        11,
+        13,
+        15
+      ],
+      "classes": [
+        4
+      ],
+      "kind": "小课",
+      "building": "东十二楼",
+      "room": "509",
+      "sourceCell": "F93",
+      "raw": "免疫学实验 11、13、15周 4C 东十二楼509"
+    }
+  ],
+  "exams": [
+    {
+      "courseId": "5",
+      "name": "解剖与生理学",
+      "week": 19,
+      "date": "2027-01-09",
+      "time": "下午"
+    },
+    {
+      "courseId": "6",
+      "name": "生物材料学",
+      "week": 16,
+      "date": "2026-12-17",
+      "time": "晚上"
+    },
+    {
+      "courseId": "7",
+      "name": "生物统计学",
+      "week": 19,
+      "date": "2027-01-04",
+      "time": "下午"
+    },
+    {
+      "courseId": "8",
+      "name": "表观遗传学",
+      "week": 19,
+      "date": "2027-01-07",
+      "time": "下午"
+    },
+    {
+      "courseId": "10",
+      "name": "科学史",
+      "week": 12,
+      "date": "2026-11-19",
+      "time": "晚上"
+    },
+    {
+      "courseId": "11",
+      "name": "生物学中的数学 2",
+      "week": 13,
+      "date": "2026-11-26",
+      "time": "晚上"
+    },
+    {
+      "courseId": "12",
+      "name": "植物生理学I",
+      "week": 14,
+      "date": "2026-12-04",
+      "time": "晚上"
+    },
+    {
+      "courseId": "13",
+      "name": "病毒学",
+      "week": 11,
+      "date": "2026-11-09",
+      "time": "晚上"
+    },
+    {
+      "courseId": "14",
+      "name": "免疫学",
+      "week": 15,
+      "date": "2026-12-10",
+      "time": "晚上"
+    }
+  ]
+}
