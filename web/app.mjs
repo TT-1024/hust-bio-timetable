@@ -187,7 +187,7 @@ function showClasses(){
   const body=openSheet('切换班级');body.append(el('p','muted','生物科学（中外合作办学）· 2024级'));
   const grid=el('div','class-options');
   for(let c=1;c<=4;c++){const b=button(`${c} 班${cls===c?' ✓':''}`,()=>{cls=c;refresh();$('#sheet').close()},`class-option${cls===c?' selected':''}`);b.setAttribute('aria-pressed',String(cls===c));b.append(el('small','',`20240${c} · 大课 + 本班小课`));grid.append(b)}
-  body.append(grid,el('p','muted','也可以点击底部「班级」返回首页重新选择。'));
+  body.append(grid);
 }
 function showElectives(){
   const body=openSheet('我的专业选修课');
