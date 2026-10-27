@@ -36,5 +36,8 @@ export function semesterSessions(data,cls){
   cache.set(cls,sessions);return sessions;
 }
 export function weekBlocks(data,week,cls){return semesterSessions(data,cls).filter(b=>b.week===week)}
+export function lessonConflicts(candidate,ownSessions,original){
+  return ownSessions.filter(s=>s.noteId!==original.noteId&&s.week===candidate.week&&s.day===candidate.day&&s.start<=candidate.end&&candidate.start<=s.end);
+}
 export function kindLabel(entry){return entry.ordinal?`第${entry.ordinal}节${entry.kind}`:entry.kind}
 export function label(entry) { return `${entry.name}（${kindLabel(entry)}）`; }

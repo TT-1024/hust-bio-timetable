@@ -1,8 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {dateAt,currentWeek,weekEntries,weekBlocks,semesterSessions,label,clampWeek,shanghaiToday} from '../web/core.mjs';
+import {dateAt,currentWeek,weekEntries,weekBlocks,semesterSessions,lessonConflicts,label,clampWeek,shanghaiToday} from '../web/core.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../web/schedule.json',import.meta.url)));
+test('alternative lessons compare overlapping periods on the same date, excluding the original lesson',()=>{
+  const original={noteId:'original',week:3,day:1,start:3,end:4};
+  const candidate={week:3,day:1,start:4,end:5};
+  const sessions=[original,{noteId:'overlap',week:3,day:1,start:5,end:6},{noteId:'adjacent',week:3,day:1,start:6,end:7},{noteId:'other-day',week:3,day:2,start:4,end:5},{noteId:'other-week',week:4,day:1,start:4,end:5}];
+  assert.deepEqual(lessonConflicts(candidate,sessions,original).map(s=>s.noteId),['overlap']);
+  assert.deepEqual(lessonConflicts(candidate,[original],original),[]);
+});
 test('semester dates match both reference screenshots and all nine source exams',()=>{
   assert.equal(dateAt(data,9),'2026-10-26');assert.equal(dateAt(data,10),'2026-11-02');
   assert.equal(currentWeek(data,'2026-10-26'),9);assert.equal(currentWeek(data,'2027-01-03'),18);

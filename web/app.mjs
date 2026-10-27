@@ -1,4 +1,4 @@
-import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,kindLabel,label} from './core.mjs?v=3';
+import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label} from './core.mjs?v=4';
 import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=4';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
@@ -107,18 +107,29 @@ async function loadNote(){
       $('#note-content').value=draft.content;$('#note-important').value=draft.important;noteDirty=true;
       if(draft.revision!==result.note.revision)conflict(result.note);else{noteStatus('已恢复这台设备上未保存的草稿。');noteControls()}
     }
-  }catch(error){if(requestId!==noteLoading)return;noteStatus(`暂时无法读取记录。${error.message||'请检查网络。'} 点击“重新读取”重试。`);noteControls()}
+  }catch(error){if(requestId!==noteLoading)return;noteStatus(location.protocol==='file:'?'本地文件无法连接记录服务，请通过课表网站或本地预览服务打开后填写。':`暂时无法读取记录。${error.message||'请检查网络。'} 点击“重新读取”重试。`);noteControls()}
 }
 function openLesson(b,push=true){
   if(noteSaving){notify('正在保存，请稍等');return}
   activeLesson=b;$('#sheet').close();$('#home').hidden=true;$('#timetable').hidden=true;$('#lesson-page').hidden=false;
   $('#lesson-title').textContent=label(b);$('#lesson-group').textContent=b.kind==='大课'?'1–4班共同记录':`${b.cls}班课堂记录`;
   $('#lesson-meta').textContent=`第${b.week}周 · ${dateAt(data,b.week,b.day)} 星期${weekdays[b.day]} · 第${b.start}–${b.end}节`;
-  $('#lesson-details-body').replaceChildren(lessonDetails(b),el('p','detail-footnote',data.teacherNote));
+  $('#lesson-details-body').replaceChildren(lessonDetails(b));
   const others=$('#other-classes');others.replaceChildren();
   if(b.kind==='小课'){
-    others.append(el('span','','其他班的同序号小课'));
-    const links=el('div');for(let c=1;c<=4;c++){const other=semesterSessions(data,c).find(s=>s.courseId===b.courseId&&s.kind===b.kind&&s.ordinal===b.ordinal);if(other){const btn=button(`${c}班`,()=>{cls=c;week=other.week;openLesson(other)},c===b.cls?'selected':'');btn.disabled=c===b.cls;links.append(btn)}}others.append(links,el('small','','同序号课程的实际授课进度可能不同。'));
+    others.append(el('strong','','其他班的同序号小课'));
+    const links=el('div','other-list');
+    for(let c=1;c<=4;c++){
+      if(c===b.cls)continue;
+      const other=semesterSessions(data,c).find(s=>s.courseId===b.courseId&&s.kind===b.kind&&s.ordinal===b.ordinal);
+      if(!other){links.append(el('div','other-unavailable',`${c}班 · 没有同序号排课`));continue}
+      const conflicts=lessonConflicts(other,filterElectives(weekBlocks(data,other.week,b.cls),selectedElectives),b);
+      const card=el('div',`other-option ${conflicts.length?'has-conflict':'no-conflict'}`);
+      card.append(el('span','other-option-heading',`${c}班 · ${conflicts.length?'时间冲突':'无课表冲突'}`),el('span','',`第${other.week}周 · ${dateAt(data,other.week,other.day)} 星期${weekdays[other.day]} · 第${other.start}–${other.end}节 (${data.periods[other.start-1][0]}–${data.periods[other.end-1][1]})`));
+      if(conflicts.length)card.append(el('span','',`冲突：${conflicts.map(label).join('、')}`));
+      links.append(card);
+    }
+    others.append(links);
   }
   const u=new URL(location.href);u.searchParams.set('class',b.cls);u.searchParams.set('week',b.week);u.searchParams.set('lesson',b.noteId);history[push?'pushState':'replaceState']({view:'lesson'},'',u);
   document.title=`${b.cls}班 · ${label(b)} · 课堂记录`;$('#lesson-title').focus({preventScroll:true});$('.lesson-main').scrollTop=0;loadNote();
