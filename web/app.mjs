@@ -1,10 +1,12 @@
 import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,kindLabel,label} from './core.mjs?v=3';
+import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=4';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
 let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer;
 let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
+let selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));
 const el=(tag,className,text)=>{const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n};
 const button=(text,fn,className='')=>{const b=el('button',className,text);b.addEventListener('click',fn);return b};
 function notify(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600)}
@@ -24,7 +26,10 @@ function enterClass(value,push=true){
   refresh();$('#main').focus({preventScroll:true});
 }
 function refresh(){
-  blocks=weekBlocks(data,week,cls);syncURL();
+  const allBlocks=weekBlocks(data,week,cls);
+  blocks=filterElectives(allBlocks,selectedElectives);syncURL();
+  $('#elective-summary').textContent=`选修课 ${selectedElectives.length}/3`;
+  $('#elective-button').classList.toggle('filtered',selectedElectives.length<3);
   $('#today').textContent=shanghaiToday().replaceAll('-','/');
   $('#week-button').replaceChildren(document.createTextNode(`第 ${week} 周 `),el('span','tiny-chevron','⌄'));
   $('#class-button').replaceChildren(document.createTextNode(`${cls} 班 `),el('span','', '⌄'));
@@ -50,7 +55,7 @@ function refresh(){
     teacher.title=b.teachers.join('、');
     const loc=el('span','location',b.building);if(b.room)loc.append(el('span','room',b.room));bottom.append(teacher,loc);n.append(name,bottom);$('#grid').append(n);
   }
-  if(!blocks.length){const empty=el('div','empty-note','本周没有排课');empty.append(el('p','',data.exams.some(e=>e.week===week)?'考试安排可在「工具箱」查看':'左右滑动，查看其他周次'));$('#grid').append(empty)}
+  if(!blocks.length){const empty=el('div','empty-note',allBlocks.length?'本周课程已按选修设置隐藏':'本周没有排课');empty.append(el('p','',allBlocks.length?'点击右上方「选修课」调整':data.exams.some(e=>e.week===week)?'考试安排可在「工具箱」查看':'左右滑动，查看其他周次'));$('#grid').append(empty)}
   renderAgenda();
   $('#announcement').textContent=`${cls}班，第${week}周，${blocks.length}个课程时段`;
   document.title=`${cls}班 · 第${week}周 · 生科课表`;
@@ -60,7 +65,7 @@ function renderAgenda(){
   for(let day=0;day<7;day++){
     view.append(el('h3','agenda-day',`星期${weekdays[day]} · ${dateAt(data,week,day).slice(5).replace('-','月')}日`));
     const courses=blocks.filter(b=>b.day===day);
-    if(!courses.length)view.append(el('p','muted','今天没有排课'));
+    if(!courses.length)view.append(el('p','muted','今天没有需要显示的课程'));
     for(const b of courses){
       const card=button('',()=>showCourse(b),'agenda-card');card.style.setProperty('--color',palette[b.courseId]);
       const time=el('div','agenda-time',data.periods[b.start-1][0]);time.append(el('div','',data.periods[b.end-1][1]));
@@ -141,6 +146,23 @@ function showClasses(){
   for(let c=1;c<=4;c++){const b=button(`${c} 班${cls===c?' ✓':''}`,()=>{cls=c;refresh();$('#sheet').close()},`class-option${cls===c?' selected':''}`);b.setAttribute('aria-pressed',String(cls===c));b.append(el('small','',`20240${c} · 大课 + 本班小课`));grid.append(b)}
   body.append(grid,el('p','muted','也可以点击底部「班级」返回首页重新选择。'));
 }
+function showElectives(){
+  const body=openSheet('我的专业选修课');
+  body.append(el('p','elective-intro','勾选你选修的课程，未勾选的专业选修课将从周课表和日程中隐藏。'));
+  const list=el('div','elective-options'),inputs=[];
+  for(const course of ELECTIVES){
+    const row=el('label','elective-option');const text=el('span','',course.name);const input=el('input');input.type='checkbox';input.value=course.id;input.checked=selectedElectives.includes(course.id);input.setAttribute('aria-label',course.name);inputs.push(input);row.append(text,input);list.append(row);
+  }
+  body.append(list);
+  const shortcuts=el('div','elective-shortcuts');shortcuts.append(button('全部选修',()=>inputs.forEach(i=>i.checked=true)),button('均未选修',()=>inputs.forEach(i=>i.checked=false)));body.append(shortcuts);
+  body.append(el('p','elective-help','只保存在当前设备的浏览器中，不会影响其他同学。换设备、换浏览器或清理网站数据后，需重新选择。'));
+  body.append(el('p','elective-help','必修课仍会显示。课程的序号和共享课堂记录不受勾选影响。'));
+  body.append(button('保存选择',()=>{
+    selectedElectives=inputs.filter(i=>i.checked).map(i=>i.value);let persisted=true;
+    try{localStorage.setItem(ELECTIVE_STORAGE_KEY,JSON.stringify(selectedElectives))}catch{persisted=false}
+    refresh();$('#sheet').close();notify(persisted?'已保存你的选修课选择':'已应用；浏览器无法保存，刷新后需重新选择。');
+  },'primary elective-apply'));
+}
 function showWeeks(){
   const body=openSheet('选择周次'),grid=el('div','week-options');
   for(let w=1;w<=data.weekCount;w++){const b=button(`第 ${w} 周`,()=>{changeWeek(w);$('#sheet').close()},`week-option${week===w?' selected':''}`);b.setAttribute('aria-pressed',String(week===w));b.append(el('small','',dateAt(data,w).slice(5).replace('-','/')));grid.append(b)}
@@ -167,6 +189,8 @@ async function init(){
   if(stored.get('bio-large','0')==='1')document.documentElement.classList.add('large-text');
   $('#previous').onclick=()=>changeWeek(week-1);$('#next').onclick=()=>changeWeek(week+1);$('#back-current').onclick=()=>changeWeek(currentWeek(data));
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
+  $('#elective-button').onclick=showElectives;
+  window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
   $('#nav-schedule').onclick=()=>{setAgenda(false);$('#sheet').close()};$('#nav-class').onclick=()=>showHome();$('#nav-tools').onclick=showTools;$('#nav-mine').onclick=showMine;
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   $('#schedule-view').addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
