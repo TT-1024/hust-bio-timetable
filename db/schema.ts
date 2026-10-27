@@ -11,3 +11,7 @@ export const noteRevisions=sqliteTable('note_revisions',{
 export const analyticsDailyVisitors=sqliteTable('analytics_daily_visitors',{
   day:text('day').notNull(),visitor:text('visitor').notNull(),opens:integer('opens').notNull().default(0)
 },table=>[index('analytics_day').on(table.day),uniqueIndex('analytics_visitor_day').on(table.day,table.visitor)]);
+
+export const analyticsOpenEvents=sqliteTable('analytics_open_events',{
+  id:text('id').primaryKey()
+});

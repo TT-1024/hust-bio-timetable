@@ -15,6 +15,13 @@
       "when": 1793091520282,
       "tag": "0001_tough_wolfsbane",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793097554255,
+      "tag": "0002_square_franklin_richards",
+      "breakpoints": true
     }
   ]
 }
