@@ -1,5 +1,12 @@
 import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label} from './core.mjs?v=4';
 import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=4';
+// Count a real page load once; in-page timetable navigation does not count.
+try {
+  const key='timetable-anonymous-device-v1';
+  let id=localStorage.getItem(key);
+  if(!id){id=crypto.randomUUID();localStorage.setItem(key,id)}
+  fetch('https://hust-bio-2024-timetable.dragon-air.chatgpt.site/api/analytics',{method:'POST',headers:{'Content-Type':'text/plain'},body:id,keepalive:true}).catch(()=>{});
+} catch {}
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
