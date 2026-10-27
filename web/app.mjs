@@ -10,7 +10,7 @@ try {
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
-let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer;
+let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer,swipeAnimating=false;
 let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
 let selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));
@@ -48,10 +48,16 @@ function refresh(){
     n.append(el('span','',weekdays[day]),el('b','',date.slice(8)==='01'?`${Number(date.slice(5,7))}/1`:String(Number(date.slice(8)))));
     $('#day-header').append(n);
   }
-  $('#grid').replaceChildren();
+  renderGrid($('#grid'),week,allBlocks,blocks);
+  renderAgenda();
+  $('#announcement').textContent=`${cls}班，第${week}周，${blocks.length}个课程时段`;
+  document.title=`${cls}班 · 第${week}周 · 生科课表`;
+}
+function renderGrid(grid,targetWeek,allBlocks,blocks){
+  grid.replaceChildren();
   data.periods.forEach((times,i)=>{
-    const line=el('div',`grid-line${[4,8].includes(i)?' break':''}`);line.style.gridRow=i+1;$('#grid').append(line);
-    const t=el('div','time');t.style.gridArea=`${i+1} / 1`;t.append(el('div','',times[0]),el('div','',times[1]));$('#grid').append(t);
+    const line=el('div',`grid-line${[4,8].includes(i)?' break':''}`);line.style.gridRow=i+1;grid.append(line);
+    const t=el('div','time');t.style.gridArea=`${i+1} / 1`;t.append(el('div','',times[0]),el('div','',times[1]));grid.append(t);
   });
   for(const b of blocks){
     const n=button('',()=>{if(Date.now()>suppressClickUntil)showCourse(b)},'course');
@@ -60,12 +66,9 @@ function refresh(){
     const name=el('div','course-name',b.name);name.append(el('span','kind',`（${kindLabel(b)}）`));
     const bottom=el('div','course-bottom'),teacher=el('span','teacher',b.teachers.join('、'));
     teacher.title=b.teachers.join('、');
-    const loc=el('span','location',b.building);if(b.room)loc.append(el('span','room',b.room));bottom.append(teacher,loc);n.append(name,bottom);$('#grid').append(n);
+    const loc=el('span','location',b.building);if(b.room)loc.append(el('span','room',b.room));bottom.append(teacher,loc);n.append(name,bottom);grid.append(n);
   }
-  if(!blocks.length){const empty=el('div','empty-note',allBlocks.length?'本周课程已按选修设置隐藏':'本周没有排课');empty.append(el('p','',allBlocks.length?'点击右上方「选修课」调整':data.exams.some(e=>e.week===week)?'考试安排可在「工具箱」查看':'左右滑动，查看其他周次'));$('#grid').append(empty)}
-  renderAgenda();
-  $('#announcement').textContent=`${cls}班，第${week}周，${blocks.length}个课程时段`;
-  document.title=`${cls}班 · 第${week}周 · 生科课表`;
+  if(!blocks.length){const empty=el('div','empty-note',allBlocks.length?'本周课程已按选修设置隐藏':'本周没有排课');empty.append(el('p','',allBlocks.length?'点击右上方「选修课」调整':data.exams.some(e=>e.week===targetWeek)?'考试安排可在「工具箱」查看':'左右滑动，查看其他周次'));grid.append(empty)}
 }
 function renderAgenda(){
   const view=$('#agenda-view');view.replaceChildren();
@@ -210,9 +213,51 @@ async function init(){
   $('#elective-button').onclick=showElectives;
   window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
-  $('#schedule-view').addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
-  $('#schedule-view').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4){suppressClickUntil=Date.now()+500;changeWeek(week+(dx<0?1:-1))}},{passive:true});
-  $('#schedule-view').addEventListener('touchcancel',()=>{touchStart=null},{passive:true});
+  const swipeView=$('#schedule-view');
+  const moveSlides=(dx)=>{
+    const width=swipeView.clientWidth, direction=dx<0?1:-1;
+    if(!touchStart.slide || touchStart.direction!==direction){
+      touchStart.slide?.remove();touchStart.slide=null;touchStart.direction=direction;
+      const target=week+direction;
+      if(target>=1&&target<=data.weekCount){
+        const slide=el('div','grid swipe-neighbor');slide.setAttribute('aria-hidden','true');
+        const all=weekBlocks(data,target,cls);renderGrid(slide,target,all,filterElectives(all,selectedElectives));
+        swipeView.append(slide);touchStart.slide=slide;
+      }
+    }
+    const offset=touchStart.slide?Math.max(-width,Math.min(width,dx)):dx*.2;
+    $('#grid').style.transform=`translateX(${offset}px)`;
+    if(touchStart.slide)touchStart.slide.style.transform=`translateX(${offset+direction*width}px)`;
+  };
+  const finishSwipe=(cancel=false)=>{
+    if(!touchStart)return;
+    const gesture=touchStart;touchStart=null;
+    if(!gesture.horizontal)return;
+    suppressClickUntil=Date.now()+500;swipeAnimating=true;
+    const grid=$('#grid'),width=swipeView.clientWidth;
+    const commit=!cancel&&gesture.slide&&Math.abs(gesture.dx)>Math.min(80,width*.22);
+    grid.classList.add('swipe-settle');gesture.slide?.classList.add('swipe-settle');
+    grid.style.transform=`translateX(${commit?-gesture.direction*width:0}px)`;
+    if(gesture.slide)gesture.slide.style.transform=`translateX(${commit?0:gesture.direction*width}px)`;
+    let finished=false;
+    const finish=()=>{
+      if(finished)return;finished=true;
+      grid.removeEventListener('transitionend',finish);gesture.slide?.remove();
+      grid.classList.remove('swipe-settle');grid.style.transform='';
+      if(commit){week+=gesture.direction;refresh()}
+      swipeAnimating=false;
+    };
+    grid.addEventListener('transitionend',finish,{once:true});setTimeout(finish,350);
+  };
+  swipeView.addEventListener('touchstart',e=>{if(!swipeAnimating&&e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY,dx:0,horizontal:false,slide:null}},{passive:true});
+  swipeView.addEventListener('touchmove',e=>{
+    if(!touchStart||e.touches.length!==1)return;
+    const dx=e.touches[0].clientX-touchStart.x,dy=e.touches[0].clientY-touchStart.y;
+    if(!touchStart.horizontal){if(Math.abs(dy)>10&&Math.abs(dy)>Math.abs(dx)){touchStart=null;return}if(Math.abs(dx)<10||Math.abs(dx)<Math.abs(dy)*1.2)return;touchStart.horizontal=true}
+    e.preventDefault();touchStart.dx=dx;moveSlides(dx);
+  },{passive:false});
+  swipeView.addEventListener('touchend',()=>finishSwipe(),{passive:true});
+  swipeView.addEventListener('touchcancel',()=>finishSwipe(true),{passive:true});
   $('#lesson-back').onclick=()=>{if(noteSaving){notify('正在保存，请稍等');return}const b=activeLesson;const u=new URL(location.href);u.searchParams.delete('lesson');history.pushState({view:'timetable'},'',u);week=b.week;enterClass(b.cls,false)};
   $('#note-save').onclick=saveNote;$('#note-reload').onclick=loadNote;$('#note-history').onclick=showNoteHistory;
   for(const field of ['#note-content','#note-important'])$(field).addEventListener('input',()=>{noteDirty=true;keepDraft();noteStatus('有未保存的修改，请点击“保存记录”同步给同学。');noteControls();if(!$('#note-conflict').hidden)$('#note-save').disabled=true});
