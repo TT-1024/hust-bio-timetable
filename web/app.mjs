@@ -202,7 +202,6 @@ async function init(){
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
   $('#elective-button').onclick=showElectives;
   window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
-  $('#nav-schedule').onclick=()=>{setAgenda(false);$('#sheet').close()};$('#nav-class').onclick=()=>showHome();$('#nav-tools').onclick=showTools;$('#nav-mine').onclick=showMine;
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   $('#schedule-view').addEventListener('touchstart',e=>{touchStart=e.touches.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY}:null},{passive:true});
   $('#schedule-view').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4){suppressClickUntil=Date.now()+500;changeWeek(week+(dx<0?1:-1))}},{passive:true});

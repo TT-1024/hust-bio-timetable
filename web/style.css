@@ -20,3 +20,4 @@
 .large-text .course-name{font-size:11px}
 .large-text .kind,.large-text .teacher,.large-text .location{font-size:9px}
 @media(max-width:360px){.course{padding-left:2px;padding-right:2px}.course-name{font-size:8.5px}}
+.toolbar-actions .elective-toolbar{height:auto;padding:0;flex:none}.toolbar-actions .elective-toolbar button{white-space:nowrap}@media(max-width:360px){.toolbar-actions .elective-toolbar button{gap:2px;padding:5px 5px}.toolbar{gap:2px}.date-week{font-size:10px}}
