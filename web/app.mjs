@@ -1,21 +1,28 @@
 import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label} from './core.mjs?v=4';
-import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=4';
-// Count a real page load once; in-page timetable navigation does not count.
-try {
-  const key='timetable-anonymous-device-v1';
-  let id=localStorage.getItem(key);
-  if(!id){id=crypto.randomUUID();localStorage.setItem(key,id)}
-  fetch('https://hust-bio-2024-timetable.dragon-air.chatgpt.site/api/analytics',{method:'POST',headers:{'Content-Type':'text/plain'},body:id,keepalive:true}).catch(()=>{});
-} catch {}
+import {ELECTIVES,ELECTIVE_STORAGE_KEY,LEGACY_ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=5';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
+const contacts=[
+  ['Sylvain FISSON','sylvain.fisson@univ-evry.fr',['免疫学']],
+  ['Hanadi SALIBA','hanadi.saliba@univ-evry.fr',['免疫学','病毒学']],
+  ['苏莉 Li SU','lisu@hust.edu.cn',['免疫学']],
+  ['Bénédicte STURBOIS','benedicte.sturbois@univ-evry.fr',['植物生理学（I）']],
+  ['Marjorie SALERNO','marjorie.salernomartinelli@univ-evry.fr',['植物生理学（I）','科学史']],
+  ['Christian VU TRAN','christian.vutran@univ-evry.fr',['科学史']],
+  ['Cécile PANTIN','cecile.pantin@univ-evry.fr',['生物学中的数学（II）']],
+  ['Alessia ZAMBORLINI','alessia.zamborlini@universite-paris-saclay.fr',['病毒学']],
+  ['Cécile Lagaudrière','cecile.lagaudriere-gesbert@universite-paris-saclay.fr',['病毒学']]
+];
 let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer,swipeAnimating=false;
 let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
-let selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));
+const loadElectives=()=>readElectives(stored.get(ELECTIVE_STORAGE_KEY,null),stored.get(LEGACY_ELECTIVE_STORAGE_KEY,null));
+let selectedElectives=loadElectives();
 const el=(tag,className,text)=>{const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n};
 const button=(text,fn,className='')=>{const b=el('button',className,text);b.addEventListener('click',fn);return b};
+const examRange=e=>`${e.startTime}–${e.endTime}`;
+const visibleExams=targetWeek=>filterElectives(data.exams.filter(e=>e.week===targetWeek),selectedElectives);
 function notify(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600)}
 function syncURL(){const u=new URL(location.href);u.searchParams.set('class',cls);u.searchParams.set('week',week);u.searchParams.delete('lesson');history.replaceState({view:'timetable'},'',u)}
 function leaveLesson(){noteLoading++;activeLesson=null;$('#lesson-page').hidden=true;noteLoaded=false;noteDirty=false}
@@ -28,15 +35,15 @@ function showHome(updateURL=true){
 }
 function enterClass(value,push=true){
   leaveLesson();
-  cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);
+  cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);setPage('schedule');
   if(push)history.pushState({view:'timetable'},'',location.href);
   refresh();$('#main').focus({preventScroll:true});
 }
 function refresh(){
   const allBlocks=weekBlocks(data,week,cls);
   blocks=filterElectives(allBlocks,selectedElectives);syncURL();
-  $('#elective-summary').textContent=`选修课 ${selectedElectives.length}/3`;
-  $('#elective-button').classList.toggle('filtered',selectedElectives.length<3);
+  $('#elective-summary').textContent=`选修课 ${selectedElectives.length}/${ELECTIVES.length}`;
+  $('#elective-button').classList.toggle('filtered',selectedElectives.length<ELECTIVES.length);
   $('#today').textContent=shanghaiToday().replaceAll('-','/');
   $('#week-button').replaceChildren(document.createTextNode(`第 ${week} 周 `),el('span','tiny-chevron','⌄'));
   $('#class-button').replaceChildren(document.createTextNode(`${cls} 班 `),el('span','', '⌄'));
@@ -50,7 +57,7 @@ function refresh(){
   }
   renderGrid($('#grid'),week,allBlocks,blocks);
   renderAgenda();
-  $('#announcement').textContent=`${cls}班，第${week}周，${blocks.length}个课程时段`;
+  $('#announcement').textContent=`${cls}班，第${week}周，${blocks.length}个课程时段，${visibleExams(week).length}场考试`;
   document.title=`${cls}班 · 第${week}周 · 生科课表`;
 }
 function renderGrid(grid,targetWeek,allBlocks,blocks){
@@ -68,18 +75,33 @@ function renderGrid(grid,targetWeek,allBlocks,blocks){
     teacher.title=b.teachers.join('、');
     const loc=el('span','location',b.building);if(b.room)loc.append(el('span','room',b.room));bottom.append(teacher,loc);n.append(name,bottom);grid.append(n);
   }
-  if(!blocks.length){const empty=el('div','empty-note',allBlocks.length?'本周课程已按选修设置隐藏':'本周没有排课');empty.append(el('p','',allBlocks.length?'点击右上方「选修课」调整':data.exams.some(e=>e.week===targetWeek)?'考试安排可在「工具箱」查看':'左右滑动，查看其他周次'));grid.append(empty)}
+  const exams=visibleExams(targetWeek);
+  for(const e of exams){
+    const n=button('',()=>showExam(e),'exam-card');
+    n.style.gridColumn=e.day+2;n.style.gridRow=`${e.gridStart} / ${e.gridEnd+1}`;
+    n.setAttribute('aria-label',`期末考试 ${e.name} ${e.date} ${examRange(e)}`);
+    const time=el('span','exam-time');time.append(el('span','',e.startTime),el('i','','–'),el('span','',e.endTime));
+    n.append(el('span','exam-badge','期末考试'),el('strong','exam-name',e.name),time);
+    grid.append(n);
+  }
+  if(!blocks.length&&!exams.length){const empty=el('div','empty-note',allBlocks.length?'本周课程已按选修设置隐藏':'本周没有排课');empty.append(el('p','',allBlocks.length?'点击右上方「选修课」调整':'左右滑动，查看其他周次'));grid.append(empty)}
 }
 function renderAgenda(){
   const view=$('#agenda-view');view.replaceChildren();
   for(let day=0;day<7;day++){
     view.append(el('h3','agenda-day',`星期${weekdays[day]} · ${dateAt(data,week,day).slice(5).replace('-','月')}日`));
     const courses=blocks.filter(b=>b.day===day);
-    if(!courses.length)view.append(el('p','muted','今天没有需要显示的课程'));
+    const exams=visibleExams(week).filter(e=>e.day===day);
+    if(!courses.length&&!exams.length)view.append(el('p','muted','今天没有需要显示的课程'));
     for(const b of courses){
       const card=button('',()=>showCourse(b),'agenda-card');card.style.setProperty('--color',palette[b.courseId]);
       const time=el('div','agenda-time',data.periods[b.start-1][0]);time.append(el('div','',data.periods[b.end-1][1]));
       const info=el('div','agenda-info');info.append(el('strong','',label(b)),el('small','',b.teachers.join('、')),el('small','',b.building+' '+b.room));card.append(time,info);view.append(card);
+    }
+    for(const e of exams){
+      const card=button('',()=>showExam(e),'agenda-card exam-agenda');
+      const time=el('div','agenda-time',e.startTime);time.append(el('div','',e.endTime));
+      const info=el('div','agenda-info');info.append(el('span','exam-agenda-badge','期末考试'),el('strong','',e.name),el('small','','考试地点以正式通知为准'));card.append(time,info);view.append(card);
     }
   }
 }
@@ -191,7 +213,12 @@ function showWeeks(){
 }
 function toolAction(body,title,subtitle,fn){const b=button(title,fn,'tool-action');b.append(el('span','','›'));if(subtitle)b.append(el('small','',subtitle));body.append(b)}
 function showTools(){const body=openSheet('工具箱');toolAction(body,'跳转周次','查看第1–19周',showWeeks);toolAction(body,'分享当前课表',`${cls}班 · 第${week}周`,share);toolAction(body,'考试安排','原课表中的9门考试',showExams);toolAction(body,'课表说明','课程类型、教师与时间来源',showInfo)}
-function showExams(){const body=openSheet('考试安排');for(const e of [...data.exams].sort((a,b)=>a.date.localeCompare(b.date))){const n=el('div','exam-item');n.append(el('strong','',e.name),el('small','',`第${e.week}周 · ${e.date} ${e.time}`));body.append(n)}body.append(el('p','detail-footnote','原课表未提供考试教室和精确起止时间，请以正式考试通知为准。其他课程考核方式为考查。'))}
+function showExam(e){
+  const body=openSheet('期末考试');
+  const alert=el('div','exam-detail');alert.append(el('span','exam-detail-label','期末考试'),el('strong','',e.name),el('b','',examRange(e)),el('small','',`第${e.week}周 · ${e.date} · 星期${weekdays[e.day]}`));body.append(alert);
+  body.append(el('p','detail-footnote','考试地点尚未提供，请以正式考试通知为准。'));
+}
+function showExams(){const body=openSheet('考试安排');for(const e of [...data.exams].sort((a,b)=>a.date.localeCompare(b.date))){const n=button('',()=>showExam(e),'exam-item');n.append(el('strong','',e.name),el('small','',`第${e.week}周 · ${e.date} ${e.time} ${examRange(e)}`));body.append(n)}body.append(el('p','detail-footnote','考试地点尚未提供，请以正式考试通知为准。其他课程考核方式为考查。'))}
 function showInfo(){const body=openSheet('课表说明');for(const p of ['华中科技大学 · 生物科学（中外合作办学）202401–202404班，2026–2027学年第一学期。','数据来自你提供的《01课表.xlsx》，按照原表周次展示，不自动跳过节假日。','“合”标为（大课），含指定班号的课程标为（小课）；F/C不参与班级筛选。两个班一起上的小课会同时显示在对应班级。',data.teacherNote,'周次起点为2026年8月31日，与原表考试日期及参考截图一致。'+data.timeSource,'课程块显示课程名称、大小课、教师及地点。过长的教师名单会省略显示，点按课程查看完整内容。'])body.append(el('p','',p))}
 function showMine(){const body=openSheet('我的课表');body.append(el('p','muted',`已选择 20240${cls} 班`));toolAction(body,'切换班级','设置只保存在这台设备',showClasses);const row=el('label','settings-row','放大课程文字');const check=el('input');check.type='checkbox';check.checked=document.documentElement.classList.contains('large-text');check.addEventListener('change',()=>{document.documentElement.classList.toggle('large-text',check.checked);stored.set('bio-large',check.checked?'1':'0')});row.append(check);body.append(row);toolAction(body,'添加到手机主屏幕','iPhone：分享 → 添加到主屏幕',()=>{const b=openSheet('添加到主屏幕');b.append(el('p','','iPhone：在 Safari 打开此网站，点击分享按钮，选择“添加到主屏幕”。'),el('p','','Android：在浏览器菜单中选择“添加到主屏幕”或“安装应用”。'))});toolAction(body,'关于课表','2026–2027学年第一学期',showInfo)}
 async function share(){
@@ -200,6 +227,22 @@ async function share(){
   const body=openSheet('分享课表');body.append(el('p','muted','复制下方链接发送给同学，会保留班级和周次。'));const input=el('input','share-link');input.readOnly=true;input.value=url;input.setAttribute('aria-label','课表分享链接');body.append(input);input.addEventListener('focus',()=>input.select());
 }
 function setAgenda(value){agenda=value;$('#schedule-view').hidden=agenda;$('#agenda-view').hidden=!agenda;$('#agenda-button').textContent=agenda?'周表':'日程';$('#main').scrollTop=0}
+function setPage(page){
+  const email=page==='email';
+  $('#schedule-header').hidden=email;$('#schedule-view').hidden=email||agenda;$('#agenda-view').hidden=email||!agenda;$('#email-view').hidden=!email;
+  for(const [id,active] of [['#nav-schedule',!email],['#nav-email',email]]){const item=$(id);item.classList.toggle('active',active);if(active)item.setAttribute('aria-current','page');else item.removeAttribute('aria-current')}
+  $('#main').scrollTop=0;
+  document.title=email?'教师邮箱 · 生科课表':`${cls}班 · 第${week}周 · 生科课表`;
+}
+function renderContacts(){
+  const list=$('#email-list');list.replaceChildren();
+  for(const [name,address,courses] of contacts){
+    const card=el('article','contact-card'),top=el('div','contact-top'),avatar=el('div','contact-avatar',name.match(/[A-Za-z]/)?.[0]?.toUpperCase()||name[0]),info=el('div','contact-info');
+    info.append(el('h2','',name),el('p','contact-courses',courses.join(' · ')));top.append(avatar,info);
+    const link=el('a','contact-email',address);link.href=`mailto:${address}`;link.setAttribute('aria-label',`给 ${name} 发邮件：${address}`);
+    card.append(top,link);list.append(card);
+  }
+}
 async function init(){
   try{const res=await fetch('./schedule.json');if(!res.ok)throw Error();data=await res.json()}catch{$('#home-status').replaceChildren(document.createTextNode('课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
   const params=new URL(location.href).searchParams;
@@ -211,7 +254,8 @@ async function init(){
   $('#previous').onclick=()=>changeWeek(week-1);$('#next').onclick=()=>changeWeek(week+1);$('#back-current').onclick=()=>changeWeek(currentWeek(data));
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
   $('#elective-button').onclick=showElectives;
-  window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
+  renderContacts();$('#nav-schedule').onclick=()=>setPage('schedule');$('#nav-email').onclick=()=>setPage('email');
+  window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===LEGACY_ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=loadElectives();if(!$('#timetable').hidden)refresh()}});
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   const swipeView=$('#schedule-view');
   const moveSlides=(dx)=>{
@@ -262,7 +306,7 @@ async function init(){
   $('#note-save').onclick=saveNote;$('#note-reload').onclick=loadNote;$('#note-history').onclick=showNoteHistory;
   for(const field of ['#note-content','#note-important'])$(field).addEventListener('input',()=>{noteDirty=true;keepDraft();noteStatus('有未保存的修改，请点击“保存记录”同步给同学。');noteControls();if(!$('#note-conflict').hidden)$('#note-save').disabled=true});
   window.addEventListener('beforeunload',e=>{if(noteDirty||noteSaving){e.preventDefault();e.returnValue=''}});
-  document.addEventListener('keydown',e=>{if(!$('#home').hidden||!$('#lesson-page').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
+  document.addEventListener('keydown',e=>{if(!$('#home').hidden||!$('#lesson-page').hidden||!$('#email-view').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
   window.addEventListener('popstate',routeFromURL);
   routeFromURL();
 }

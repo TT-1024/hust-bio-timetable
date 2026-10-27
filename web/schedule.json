@@ -102,7 +102,7 @@
       "teachers": [
         "胡文君"
       ],
-      "assessment": "19周周六（2027年1月9日）下午"
+      "assessment": "19周周六（2027年1月9日）下午 14:30–17:00"
     },
     {
       "id": "6",
@@ -112,7 +112,7 @@
         "王江林",
         "张胜民"
       ],
-      "assessment": "16周周四（2026年12月17日）晚上"
+      "assessment": "16周周四（2026年12月17日）晚上 19:00–21:30"
     },
     {
       "id": "7",
@@ -120,7 +120,7 @@
       "teachers": [
         "常俊丽"
       ],
-      "assessment": "19周周一（2027年1月4日）下午"
+      "assessment": "19周周一（2027年1月4日）下午 14:30–17:00"
     },
     {
       "id": "8",
@@ -128,7 +128,7 @@
       "teachers": [
         "柯铁"
       ],
-      "assessment": "19周周四（2027年1月7日）下午"
+      "assessment": "19周周四（2027年1月7日）下午 14:30–17:00"
     },
     {
       "id": "9",
@@ -146,7 +146,7 @@
         "Christian VU TRAN",
         "春雷"
       ],
-      "assessment": "12周周四（2026年11月19日）晚上"
+      "assessment": "12周周四（2026年11月19日）晚上 19:00–21:30"
     },
     {
       "id": "11",
@@ -155,7 +155,7 @@
         "Cécile PANTIN",
         "王申"
       ],
-      "assessment": "13周周四（2026年11月26日）晚上"
+      "assessment": "13周周四（2026年11月26日）晚上 19:00–21:30"
     },
     {
       "id": "12",
@@ -165,7 +165,7 @@
         "Marjorie SALERNO",
         "李引"
       ],
-      "assessment": "14周周五（2026年12月4日）晚上"
+      "assessment": "14周周五（2026年12月4日）晚上 19:00–21:30"
     },
     {
       "id": "13",
@@ -175,7 +175,7 @@
         "Cécile LAGAUDRIÈRE",
         "蒋涛"
       ],
-      "assessment": "11周周一（2026年11月9日）晚上"
+      "assessment": "11周周一（2026年11月9日）晚上 19:00–21:30"
     },
     {
       "id": "14",
@@ -186,7 +186,7 @@
         "Sylvain FISSON",
         "Hanadi SALIBA"
       ],
-      "assessment": "15周周四（2026年12月10日）晚上"
+      "assessment": "15周周四（2026年12月10日）晚上 19:00–21:30"
     }
   ],
   "entries": [
@@ -4729,64 +4729,109 @@
       "courseId": "5",
       "name": "解剖与生理学",
       "week": 19,
+      "day": 5,
       "date": "2027-01-09",
-      "time": "下午"
+      "time": "下午",
+      "startTime": "14:30",
+      "endTime": "17:00",
+      "gridStart": 5,
+      "gridEnd": 8
     },
     {
       "courseId": "6",
       "name": "生物材料学",
       "week": 16,
+      "day": 3,
       "date": "2026-12-17",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     },
     {
       "courseId": "7",
       "name": "生物统计学",
       "week": 19,
+      "day": 0,
       "date": "2027-01-04",
-      "time": "下午"
+      "time": "下午",
+      "startTime": "14:30",
+      "endTime": "17:00",
+      "gridStart": 5,
+      "gridEnd": 8
     },
     {
       "courseId": "8",
       "name": "表观遗传学",
       "week": 19,
+      "day": 3,
       "date": "2027-01-07",
-      "time": "下午"
+      "time": "下午",
+      "startTime": "14:30",
+      "endTime": "17:00",
+      "gridStart": 5,
+      "gridEnd": 8
     },
     {
       "courseId": "10",
       "name": "科学史",
       "week": 12,
+      "day": 3,
       "date": "2026-11-19",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     },
     {
       "courseId": "11",
       "name": "生物学中的数学 2",
       "week": 13,
+      "day": 3,
       "date": "2026-11-26",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     },
     {
       "courseId": "12",
       "name": "植物生理学I",
       "week": 14,
+      "day": 4,
       "date": "2026-12-04",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     },
     {
       "courseId": "13",
       "name": "病毒学",
       "week": 11,
+      "day": 0,
       "date": "2026-11-09",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     },
     {
       "courseId": "14",
       "name": "免疫学",
       "week": 15,
+      "day": 3,
       "date": "2026-12-10",
-      "time": "晚上"
+      "time": "晚上",
+      "startTime": "19:00",
+      "endTime": "21:30",
+      "gridStart": 9,
+      "gridEnd": 12
     }
   ]
 }

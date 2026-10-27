@@ -14,7 +14,12 @@ test('semester dates match both reference screenshots and all nine source exams'
   assert.equal(dateAt(data,9),'2026-10-26');assert.equal(dateAt(data,10),'2026-11-02');
   assert.equal(currentWeek(data,'2026-10-26'),9);assert.equal(currentWeek(data,'2027-01-03'),18);
   assert.equal(shanghaiToday(new Date('2026-10-25T16:01:00Z')),'2026-10-26');
-  for(const e of data.exams)assert.equal(currentWeek(data,e.date),e.week);
+  for(const e of data.exams){
+    assert.equal(currentWeek(data,e.date),e.week);
+    assert.equal((new Date(`${e.date}T00:00:00Z`).getUTCDay()+6)%7,e.day);
+    const expected=e.time==='下午'?['14:30','17:00',5,8]:['19:00','21:30',9,12];
+    assert.deepEqual([e.startTime,e.endTime,e.gridStart,e.gridEnd],expected);
+  }
 });
 test('combined courses go to all four classes; numbered and paired courses only to named classes',()=>{
   for(let w=1;w<=data.weekCount;w++)for(let c=1;c<=4;c++){
