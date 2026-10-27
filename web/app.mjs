@@ -3,6 +3,17 @@ import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './pr
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
+const contacts=[
+  ['Sylvain FISSON','sylvain.fisson@univ-evry.fr',['免疫学']],
+  ['Hanadi SALIBA','hanadi.saliba@univ-evry.fr',['免疫学','病毒学']],
+  ['苏莉 Li SU','lisu@hust.edu.cn',['免疫学']],
+  ['Bénédicte STURBOIS','benedicte.sturbois@univ-evry.fr',['植物生理学（I）']],
+  ['Marjorie SALERNO','marjorie.salernomartinelli@univ-evry.fr',['植物生理学（I）','科学史']],
+  ['Christian VU TRAN','christian.vutran@univ-evry.fr',['科学史']],
+  ['Cécile PANTIN','cecile.pantin@univ-evry.fr',['生物学中的数学（II）']],
+  ['Alessia ZAMBORLINI','alessia.zamborlini@universite-paris-saclay.fr',['病毒学']],
+  ['Cécile Lagaudrière','cecile.lagaudriere-gesbert@universite-paris-saclay.fr',['病毒学']]
+];
 let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer,swipeAnimating=false;
 let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
@@ -21,7 +32,7 @@ function showHome(updateURL=true){
 }
 function enterClass(value,push=true){
   leaveLesson();
-  cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);
+  cls=value;$('#home').hidden=true;$('#timetable').hidden=false;setAgenda(false);setPage('schedule');
   if(push)history.pushState({view:'timetable'},'',location.href);
   refresh();$('#main').focus({preventScroll:true});
 }
@@ -193,6 +204,22 @@ async function share(){
   const body=openSheet('分享课表');body.append(el('p','muted','复制下方链接发送给同学，会保留班级和周次。'));const input=el('input','share-link');input.readOnly=true;input.value=url;input.setAttribute('aria-label','课表分享链接');body.append(input);input.addEventListener('focus',()=>input.select());
 }
 function setAgenda(value){agenda=value;$('#schedule-view').hidden=agenda;$('#agenda-view').hidden=!agenda;$('#agenda-button').textContent=agenda?'周表':'日程';$('#main').scrollTop=0}
+function setPage(page){
+  const email=page==='email';
+  $('#schedule-header').hidden=email;$('#schedule-view').hidden=email||agenda;$('#agenda-view').hidden=email||!agenda;$('#email-view').hidden=!email;
+  for(const [id,active] of [['#nav-schedule',!email],['#nav-email',email]]){const item=$(id);item.classList.toggle('active',active);if(active)item.setAttribute('aria-current','page');else item.removeAttribute('aria-current')}
+  $('#main').scrollTop=0;
+  document.title=email?'教师邮箱 · 生科课表':`${cls}班 · 第${week}周 · 生科课表`;
+}
+function renderContacts(){
+  const list=$('#email-list');list.replaceChildren();
+  for(const [name,address,courses] of contacts){
+    const card=el('article','contact-card'),top=el('div','contact-top'),avatar=el('div','contact-avatar',name.match(/[A-Za-z]/)?.[0]?.toUpperCase()||name[0]),info=el('div','contact-info');
+    info.append(el('h2','',name),el('p','contact-courses',courses.join(' · ')));top.append(avatar,info);
+    const link=el('a','contact-email',address);link.href=`mailto:${address}`;link.setAttribute('aria-label',`给 ${name} 发邮件：${address}`);
+    card.append(top,link);list.append(card);
+  }
+}
 async function init(){
   try{const res=await fetch('./schedule.json');if(!res.ok)throw Error();data=await res.json()}catch{$('#home-status').replaceChildren(document.createTextNode('课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
   const params=new URL(location.href).searchParams;
@@ -204,6 +231,7 @@ async function init(){
   $('#previous').onclick=()=>changeWeek(week-1);$('#next').onclick=()=>changeWeek(week+1);$('#back-current').onclick=()=>changeWeek(currentWeek(data));
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
   $('#elective-button').onclick=showElectives;
+  renderContacts();$('#nav-schedule').onclick=()=>setPage('schedule');$('#nav-email').onclick=()=>setPage('email');
   window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   const swipeView=$('#schedule-view');
@@ -255,7 +283,7 @@ async function init(){
   $('#note-save').onclick=saveNote;$('#note-reload').onclick=loadNote;$('#note-history').onclick=showNoteHistory;
   for(const field of ['#note-content','#note-important'])$(field).addEventListener('input',()=>{noteDirty=true;keepDraft();noteStatus('有未保存的修改，请点击“保存记录”同步给同学。');noteControls();if(!$('#note-conflict').hidden)$('#note-save').disabled=true});
   window.addEventListener('beforeunload',e=>{if(noteDirty||noteSaving){e.preventDefault();e.returnValue=''}});
-  document.addEventListener('keydown',e=>{if(!$('#home').hidden||!$('#lesson-page').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
+  document.addEventListener('keydown',e=>{if(!$('#home').hidden||!$('#lesson-page').hidden||!$('#email-view').hidden||$('#sheet').open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowLeft'){e.preventDefault();changeWeek(week-1)}if(e.key==='ArrowRight'){e.preventDefault();changeWeek(week+1)}});
   window.addEventListener('popstate',routeFromURL);
   routeFromURL();
 }
