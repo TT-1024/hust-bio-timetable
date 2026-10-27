@@ -1,5 +1,5 @@
 import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label} from './core.mjs?v=4';
-import {ELECTIVES,ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=4';
+import {ELECTIVES,ELECTIVE_STORAGE_KEY,LEGACY_ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=5';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
 const weekdays=['一','二','三','四','五','六','日'];
@@ -17,7 +17,8 @@ const contacts=[
 let data,week,cls,blocks,agenda=false,touchStart=null,suppressClickUntil=0,toastTimer,swipeAnimating=false;
 let activeLesson=null,noteRevision=0,noteLoaded=false,noteDirty=false,noteLoading=0,noteSaving=false;
 const stored={get(key,fallback){try{return localStorage.getItem(key)??fallback}catch{return fallback}},set(key,value){try{localStorage.setItem(key,value)}catch{}}};
-let selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));
+const loadElectives=()=>readElectives(stored.get(ELECTIVE_STORAGE_KEY,null),stored.get(LEGACY_ELECTIVE_STORAGE_KEY,null));
+let selectedElectives=loadElectives();
 const el=(tag,className,text)=>{const n=document.createElement(tag);if(className)n.className=className;if(text!==undefined)n.textContent=text;return n};
 const button=(text,fn,className='')=>{const b=el('button',className,text);b.addEventListener('click',fn);return b};
 function notify(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600)}
@@ -39,8 +40,8 @@ function enterClass(value,push=true){
 function refresh(){
   const allBlocks=weekBlocks(data,week,cls);
   blocks=filterElectives(allBlocks,selectedElectives);syncURL();
-  $('#elective-summary').textContent=`选修课 ${selectedElectives.length}/3`;
-  $('#elective-button').classList.toggle('filtered',selectedElectives.length<3);
+  $('#elective-summary').textContent=`选修课 ${selectedElectives.length}/${ELECTIVES.length}`;
+  $('#elective-button').classList.toggle('filtered',selectedElectives.length<ELECTIVES.length);
   $('#today').textContent=shanghaiToday().replaceAll('-','/');
   $('#week-button').replaceChildren(document.createTextNode(`第 ${week} 周 `),el('span','tiny-chevron','⌄'));
   $('#class-button').replaceChildren(document.createTextNode(`${cls} 班 `),el('span','', '⌄'));
@@ -232,7 +233,7 @@ async function init(){
   $('#week-button').onclick=showWeeks;$('#class-button').onclick=showClasses;$('#agenda-button').onclick=()=>setAgenda(!agenda);
   $('#elective-button').onclick=showElectives;
   renderContacts();$('#nav-schedule').onclick=()=>setPage('schedule');$('#nav-email').onclick=()=>setPage('email');
-  window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=readElectives(stored.get(ELECTIVE_STORAGE_KEY,null));if(!$('#timetable').hidden)refresh()}});
+  window.addEventListener('storage',event=>{if(event.key===ELECTIVE_STORAGE_KEY||event.key===LEGACY_ELECTIVE_STORAGE_KEY||event.key===null){selectedElectives=loadElectives();if(!$('#timetable').hidden)refresh()}});
   $('#close-sheet').onclick=()=>$('#sheet').close();$('#sheet').onclick=e=>{const r=$('#sheet').getBoundingClientRect();if(e.target===$('#sheet')&&(e.clientY<r.top||e.clientY>r.bottom||e.clientX<r.left||e.clientX>r.right))$('#sheet').close()};
   const swipeView=$('#schedule-view');
   const moveSlides=(dx)=>{
