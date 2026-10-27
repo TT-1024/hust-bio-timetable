@@ -61,3 +61,6 @@
 .contact-info{min-width:0}.contact-info h2{font-size:14px;line-height:1.4;color:#4b414d;overflow-wrap:anywhere}.contact-courses{margin:4px 0 0;color:#a99aa9;font-size:11px;line-height:1.5}
 .contact-email{display:block;margin:12px 0 0;padding-top:11px;border-top:1px solid #f4eff2;color:#c77e8d;font-size:12px;line-height:1.5;text-decoration:none;overflow-wrap:anywhere}
 .contact-email:active{opacity:.65}
+
+/* Keep keyboard focus visible without a circular outline on close buttons. */
+.close-button:focus-visible{outline:none;color:#665674;text-decoration:underline;text-underline-offset:3px}
