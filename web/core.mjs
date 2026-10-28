@@ -10,6 +10,17 @@ export function currentWeek(data,today=shanghaiToday()) {
   return Math.floor((Date.parse(today+'T00:00:00Z')-Date.parse(data.semesterStart+'T00:00:00Z'))/604800000)+1;
 }
 export function clampWeek(data,week) { return Math.max(1,Math.min(data.weekCount,Number.isFinite(Number(week))?Math.floor(Number(week)):1)); }
+export function normalizeExam(exam) {
+  const date = new Date(`${exam.date}T00:00:00Z`);
+  const day = (date.getUTCDay()+6)%7;
+  const slot = exam.time==='下午'
+    ? {startTime:'14:30',endTime:'17:00',gridStart:5,gridEnd:8}
+    : exam.time==='晚上'
+      ? {startTime:'19:00',endTime:'21:30',gridStart:9,gridEnd:12}
+      : null;
+  if (!Number.isFinite(day) || !slot) throw new Error('Invalid exam schedule');
+  return {...exam,...slot,day};
+}
 export function weekEntries(data,week,cls) {
   return data.entries.filter(e=>e.weeks.includes(week)&&e.classes.includes(cls)).sort((a,b)=>a.day-b.day||a.start-b.start);
 }

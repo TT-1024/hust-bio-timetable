@@ -1,4 +1,4 @@
-import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label} from './core.mjs?v=4';
+import {dateAt,shanghaiToday,currentWeek,clampWeek,weekBlocks,semesterSessions,lessonConflicts,kindLabel,label,normalizeExam} from './core.mjs?v=5';
 import {ELECTIVES,ELECTIVE_STORAGE_KEY,LEGACY_ELECTIVE_STORAGE_KEY,readElectives,filterElectives} from './preferences.mjs?v=5';
 const $=s=>document.querySelector(s);
 const palette={'1':'#697acb','2':'#79cf69','3':'#ee84c9','4':'#ef7eb5','5':'#35b59a','6':'#9381ca','7':'#58bf53','8':'#7586d5','9':'#06bfd5','10':'#05c0d0','11':'#fa9676','12':'#f19c89','13':'#65a4df','14':'#55c2bd'};
@@ -244,7 +244,7 @@ function renderContacts(){
   }
 }
 async function init(){
-  try{const res=await fetch('./schedule.json');if(!res.ok)throw Error();data=await res.json()}catch{$('#home-status').replaceChildren(document.createTextNode('课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
+  try{const res=await fetch('./schedule.json?v=2');if(!res.ok)throw Error();data=await res.json();data.exams=data.exams.map(normalizeExam)}catch{$('#home-status').replaceChildren(document.createTextNode('课表加载失败，请检查网络后重试。'),button('重新加载',()=>location.reload(),'primary'));return}
   const params=new URL(location.href).searchParams;
   cls=Number(params.get('class'));if(![1,2,3,4].includes(cls))cls=null;
   week=clampWeek(data,params.get('week')||currentWeek(data));

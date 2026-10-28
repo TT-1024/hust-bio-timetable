@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {dateAt,currentWeek,weekEntries,weekBlocks,semesterSessions,lessonConflicts,label,clampWeek,shanghaiToday} from '../web/core.mjs';
+import {dateAt,currentWeek,weekEntries,weekBlocks,semesterSessions,lessonConflicts,label,clampWeek,shanghaiToday,normalizeExam} from '../web/core.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../web/schedule.json',import.meta.url)));
 test('alternative lessons compare overlapping periods on the same date, excluding the original lesson',()=>{
   const original={noteId:'original',week:3,day:1,start:3,end:4};
@@ -20,6 +20,13 @@ test('semester dates match both reference screenshots and all nine source exams'
     const expected=e.time==='下午'?['14:30','17:00',5,8]:['19:00','21:30',9,12];
     assert.deepEqual([e.startTime,e.endTime,e.gridStart,e.gridEnd],expected);
   }
+});
+test('legacy cached exam data still has correct placement and time',()=>{
+  for(const {day,startTime,endTime,gridStart,gridEnd,...legacy} of data.exams){
+    assert.deepEqual(normalizeExam(legacy),{...legacy,day,startTime,endTime,gridStart,gridEnd});
+  }
+  assert.throws(()=>normalizeExam({date:'bad',time:'晚上'}));
+  assert.throws(()=>normalizeExam({date:'2026-11-09',time:'未知'}));
 });
 test('combined courses go to all four classes; numbered and paired courses only to named classes',()=>{
   for(let w=1;w<=data.weekCount;w++)for(let c=1;c<=4;c++){
